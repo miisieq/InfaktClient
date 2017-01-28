@@ -2,6 +2,8 @@
 
 namespace Infakt\Repository;
 
+use Infakt\Model\Invoice;
+
 class InvoiceRepository extends AbstractObjectRepository
 {
 
@@ -13,7 +15,7 @@ class InvoiceRepository extends AbstractObjectRepository
             throw new \LogicException('Invalid invoice kind "' . $kind . '"');
         }
 
-        $query = $this->getServiceName() . '/next_number.json?kind=vat';
+        $query = $this->getServiceName() . '/next_number.json?kind=' . $kind;
         $response = $this->client->get($query);
 
         $data = \GuzzleHttp\json_decode($response->getBody()->getContents(), true);
@@ -23,6 +25,14 @@ class InvoiceRepository extends AbstractObjectRepository
         }
 
         return (string) $data['next_number'];
+    }
+
+    public function markAsPaid(Invoice $invoice, \DateTime $paidDate = null)
+    {
+        $query = $this->getServiceName() . '/' . $invoice->getId() . '/paid.json';
+        $this->client->post($query);
+
+        return;
     }
 
 }

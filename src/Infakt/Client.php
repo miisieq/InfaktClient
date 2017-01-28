@@ -3,7 +3,7 @@
 namespace Infakt;
 
 use GuzzleHttp\ClientInterface;
-use Infakt\Exception\InfaktConfigurationException;
+use Infakt\Exception\ConfigurationException;
 
 class Client
 {
@@ -26,7 +26,7 @@ class Client
         ], $config);
 
         if (!$config['api_key']) {
-            throw new InfaktConfigurationException('Required "api_key" key not supplied in the config.');
+            throw new ConfigurationException('Required "api_key" key not supplied in the config.');
         }
 
         $this->client = new \GuzzleHttp\Client([
@@ -43,14 +43,19 @@ class Client
         return $this->client->get($this->buildQuery($query));
     }
 
-    public function post($query, $data)
+    public function post($query, $body = null)
     {
-        return $this->client->post($this->buildQuery($query), [
+        $options = [
             'headers' => [
                 'Content-Type' => 'application/json'
-            ],
-            'body' => $data
-        ]);
+            ]
+        ];
+
+        if ($body) {
+            $options['body'] = $body;
+        }
+
+        return $this->client->post($this->buildQuery($query), $options);
     }
 
     public function buildQuery($query)
