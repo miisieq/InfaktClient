@@ -2,6 +2,12 @@
 
 namespace Infakt\Model;
 
+/**
+ * This entity represents a Client
+ *
+ * @link https://www.infakt.pl/developers/clients.html#def
+ * @package Infakt\Model
+ */
 class Client extends AbstractEntity
 {
 

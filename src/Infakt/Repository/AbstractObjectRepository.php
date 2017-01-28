@@ -5,7 +5,7 @@ namespace Infakt\Repository;
 use Infakt\Client;
 use Infakt\Collections\Criteria;
 use Infakt\Collections\CollectionResult;
-use Infakt\Exception\InfaktJsonDecoderException;
+use Infakt\Exception\ApiException;
 use Infakt\Model\AbstractEntity;
 use Doctrine\Common\Inflector\Inflector;
 
@@ -66,7 +66,7 @@ abstract class AbstractObjectRepository implements ObjectRepositoryInterface
             && array_key_exists('total_count', $data['metainfo'])
             && array_key_exists('entities', $data))
         ) {
-            throw new InfaktJsonDecoderException("Response does not contain required fields.");
+            throw new ApiException("Response does not contain required fields.");
         }
 
         $modelClass = $this->getModelClass();

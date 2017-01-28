@@ -2,7 +2,7 @@
 
 namespace Infakt;
 
-use Infakt\Exception\InfaktConfigurationException;
+use Infakt\Exception\ConfigurationException;
 use Infakt\Repository\AbstractObjectRepository;
 
 class Infakt
@@ -27,21 +27,21 @@ class Infakt
         ], $config);
 
         if (!$config['api_key']) {
-            throw new InfaktConfigurationException('Required "api_key" key not supplied in the config.');
+            throw new ConfigurationException('Required "api_key" key not supplied in the config.');
         }
     }
 
     /**
      * @param $className
      * @return AbstractObjectRepository
-     * @throws InfaktConfigurationException
+     * @throws ConfigurationException
      */
     public function getRepository($className)
     {
         $className  = 'Infakt\\Repository\\' . substr($className, strrpos($className, '\\') + 1) . 'Repository';
 
         if (!class_exists($className)) {
-            throw new InfaktConfigurationException("There is no repository to work with class $className.");
+            throw new ConfigurationException("There is no repository to work with class $className.");
         }
 
         return new $className($this->getClient());
