@@ -2,20 +2,20 @@
 
 namespace Infakt\Repository;
 
-use Infakt\Client;
+use Infakt\Infakt;
+use Infakt\Model\EntityInterface;
 use Infakt\Collections\Criteria;
 use Infakt\Collections\CollectionResult;
 use Infakt\Exception\ApiException;
-use Infakt\Model\AbstractEntity;
+use Infakt\Mapper\MapperInterface;
 use Doctrine\Common\Inflector\Inflector;
 
 abstract class AbstractObjectRepository implements ObjectRepositoryInterface
 {
-
     /**
-     * @var Client
+     * @var Infakt
      */
-    protected $client;
+    protected $infakt;
 
     /**
      * Fully-qualified class name of a model
@@ -24,61 +24,61 @@ abstract class AbstractObjectRepository implements ObjectRepositoryInterface
      */
     protected $modelClass;
 
-    public function __construct(Client $client)
+    /**
+     * Fully-qualified class name of a mapper
+     *
+     * @var string
+     */
+    protected $mapperClass;
+
+    /**
+     * AbstractObjectRepository constructor.
+     *
+     * @param Infakt $infakt
+     */
+    public function __construct(Infakt $infakt)
     {
-        $this->client = $client;
+        $this->infakt = $infakt;
+
+        $this->modelClass = $this->getModelClass();
+        $this->mapperClass = $this->getMapperClass();
     }
 
     /**
      * Get entity by ID
      *
      * @param $entityId
-     * @return AbstractEntity
+     * @return EntityInterface
      */
-    public function get($entityId)
+    public function get(int $entityId)
     {
-        $response = $this->client->get($this->getServiceName() . '/' . $entityId . '.json');
-
-        return $this->getModelFromRawResponse($response->getBody()->getContents());
+        $response = $this->infakt->get($this->getServiceName() . '/' . $entityId . '.json');
+var_dump(\GuzzleHttp\json_decode($response->getBody()->getContents(), true));exit;
+        return $this->getMapper()->map(\GuzzleHttp\json_decode($response->getBody()->getContents(), true));
     }
 
-
-    public function create(AbstractEntity $entity)
+    /**
+     * @param int $page
+     * @param int $limit
+     * @return CollectionResult
+     */
+    public function getAll(int $page = 1, int $limit = 25)
     {
-        $query = $this->getServiceName() . '.json';
-
-        $content = \GuzzleHttp\json_encode([
-            $this->getEntityName() => $entity
-        ]);
-
-        $response = $this->client->post($query, $content);
-
-        return $this->getModelFromRawResponse($response->getBody()->getContents());
+        return $this->match(new Criteria([], [], ($page - 1) * $limit, $limit));
     }
 
-
+    /**
+     * @param Criteria $criteria
+     * @return CollectionResult
+     */
     public function matching(Criteria $criteria)
     {
-        $response = $this->client->get($this->buildQuery($criteria));
-        $data = \GuzzleHttp\json_decode($response->getBody()->getContents(), true);
+        return $this->match($criteria);
+    }
 
-        if (!(array_key_exists('metainfo', $data)
-            && array_key_exists('total_count', $data['metainfo'])
-            && array_key_exists('entities', $data))
-        ) {
-            throw new ApiException("Response does not contain required fields.");
-        }
-
-        $modelClass = $this->getModelClass();
-
-        $collection = new CollectionResult();
-        $collection->setTotalCount($data['metainfo']['total_count']);
-
-        foreach ($data['entities'] as $entity) {
-            $collection->addItemToCollection(new $modelClass($entity));
-        }
-
-        return $collection;
+    public function create(EntityInterface $entity)
+    {
+        // To implement
     }
 
     public function buildQuery(Criteria $criteria)
@@ -128,26 +128,42 @@ abstract class AbstractObjectRepository implements ObjectRepositoryInterface
     }
 
     /**
-     * Get model object from raw JSON response
-     *
-     * @param $response
-     * @return AbstractEntity
+     * @param Criteria $criteria
+     * @return CollectionResult
+     * @throws ApiException
      */
-    protected function getModelFromRawResponse($response)
+    protected function match(Criteria $criteria)
     {
-        $modelClass = $this->getModelClass();
+        $response = $this->infakt->get($this->buildQuery($criteria));
+        $data = \GuzzleHttp\json_decode($response->getBody()->getContents(), true);
 
-        return new $modelClass(\GuzzleHttp\json_decode($response, true));
+        if (!(array_key_exists('metainfo', $data)
+            && array_key_exists('total_count', $data['metainfo'])
+            && array_key_exists('entities', $data))
+        ) {
+            throw new ApiException("Response does not contain required fields.");
+        }
+
+        $mapper = $this->getMapper();
+
+        $collection = new CollectionResult();
+        $collection->setTotalCount($data['metainfo']['total_count']);
+
+        foreach ($data['entities'] as $entity) {
+            $collection->addItemToCollection($mapper->map($entity));
+        }
+
+        return $collection;
     }
 
     /**
-     * Gets API service name, for example: "clients"
+     * Gets API service name, for example: "clients" or "bank_accounts"
      *
      * @return string
      */
-    protected function getServiceName()
+    protected function getServiceName(): string
     {
-        return Inflector::pluralize($this->getEntityName());
+        return Inflector::pluralize(Inflector::tableize(substr($this->modelClass, strrpos($this->modelClass, '\\') + 1)));
     }
 
     /**
@@ -155,9 +171,9 @@ abstract class AbstractObjectRepository implements ObjectRepositoryInterface
      *
      * @return string
      */
-    protected function getEntityName()
+    protected function getEntityName(): string
     {
-        return strtolower(substr($this->getModelClass(), strrpos($this->getModelClass(), '\\') + 1));
+        return strtolower(substr($this->modelClass, strrpos($this->modelClass, '\\') + 1));
     }
 
     /**
@@ -165,16 +181,36 @@ abstract class AbstractObjectRepository implements ObjectRepositoryInterface
      *
      * @return string
      */
-    protected function getModelClass()
+    protected function getModelClass(): string
     {
-        if (!$this->modelClass) {
-            $class = substr(get_class($this), strrpos(get_class($this), '\\') + 1);
-            $class = substr($class, 0, strlen($class) - strlen('Repository'));
+        $class = substr(get_class($this), strrpos(get_class($this), '\\') + 1);
+        $class = substr($class, 0, strlen($class) - strlen('Repository'));
 
-            $this->modelClass = 'Infakt\\Model\\' . $class;
-        }
-
-        return $this->modelClass;
+        return 'Infakt\\Model\\'.$class;
     }
 
+    /**
+     * Get fully-qualified class name of a mapper
+     *
+     * @return string
+     */
+    protected function getMapperClass(): string
+    {
+        $class = substr(get_class($this), strrpos(get_class($this), '\\') + 1);
+        $class = substr($class, 0, strlen($class) - strlen('Repository'));
+
+        return 'Infakt\\Mapper\\'.$class.'Mapper';
+    }
+
+    /**
+     * Get mapper
+     *
+     * @return MapperInterface
+     */
+    protected function getMapper(): MapperInterface
+    {
+        $mapperClass = $this->getMapperClass();
+
+        return new $mapperClass;
+    }
 }

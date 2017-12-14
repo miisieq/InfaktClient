@@ -1,4 +1,6 @@
 <?php
+declare(strict_types=1);
+
 namespace Infakt\Collections;
 
 class Criteria
@@ -24,22 +26,19 @@ class Criteria
     private $sortClauses;
 
     /**
-     * Creates an instance of the class.
+     * Criteria constructor
      *
-     * @return Criteria
+     * @param array $comparisons
+     * @param array $sortClauses
+     * @param int $firstResult
+     * @param int $maxResults
      */
-    public static function create()
-    {
-        return new static();
-    }
-
-    public function __construct(array $comparisons = [], array $sortClauses = [], $firstResult = 0, $maxResults = 10)
+    public function __construct(array $comparisons = [], array $sortClauses = [], int $firstResult = 0, int $maxResults = 10)
     {
         $this->sortClauses = $sortClauses;
         $this->comparisons = $comparisons;
-
-        $this->setFirstResult($firstResult);
-        $this->setMaxResults($maxResults);
+        $this->firstResult = $firstResult;
+        $this->maxResults = $maxResults;
     }
 
     /**
@@ -47,23 +46,9 @@ class Criteria
      *
      * @return int
      */
-    public function getFirstResult()
+    public function getFirstResult(): int
     {
         return $this->firstResult;
-    }
-
-    /**
-     * Set the number of first result that this Criteria should return.
-     *
-     * @param int|null $firstResult The value to set.
-     *
-     * @return $this
-     */
-    public function setFirstResult($firstResult)
-    {
-        $this->firstResult = null === $firstResult ? null : (int) $firstResult;
-
-        return $this;
     }
 
     /**
@@ -71,30 +56,16 @@ class Criteria
      *
      * @return int
      */
-    public function getMaxResults()
+    public function getMaxResults(): int
     {
         return $this->maxResults;
-    }
-
-    /**
-     * Sets maxResults.
-     *
-     * @param int|null $maxResults The value to set.
-     *
-     * @return $this
-     */
-    public function setMaxResults($maxResults)
-    {
-        $this->maxResults = null === $maxResults ? null : (int) $maxResults;
-
-        return $this;
     }
 
     /**
      * @param Comparison $comparison
      * @return $this
      */
-    public function addComparison(Comparison $comparison)
+    public function addComparison(Comparison $comparison): Criteria
     {
         $this->comparisons[] = $comparison;
 
@@ -102,29 +73,51 @@ class Criteria
     }
 
     /**
+     * @param Comparison[] $comparisons
+     * @return Criteria
+     */
+    public function setComparisons(array $comparisons): Criteria
+    {
+        $this->comparisons = $comparisons;
+
+        return $this;
+    }
+
+    /**
      * @return Comparison[]
      */
-    public function getComparisons()
+    public function getComparisons(): array
     {
         return $this->comparisons;
     }
 
     /**
-     * @return SortClause[]
+     * @param SortClause $sortClause
+     * @return Criteria
      */
-    public function getSortClauses()
+    public function addSortClause(SortClause $sortClause): Criteria
     {
-        return $this->sortClauses;
+        $this->sortClauses[] = $sortClause;
+
+        return $this;
     }
 
     /**
      * @param SortClause[] $sortClauses
      * @return Criteria
      */
-    public function setSortClauses($sortClauses)
+    public function setSortClauses(array $sortClauses): Criteria
     {
         $this->sortClauses = $sortClauses;
+
         return $this;
     }
 
+    /**
+     * @return SortClause[]
+     */
+    public function getSortClauses(): array
+    {
+        return $this->sortClauses;
+    }
 }

@@ -2,9 +2,6 @@
 
 namespace Infakt\Exception;
 
-use Infakt\InfaktException;
-
-class ApiException extends InfaktException
+class ApiException extends AbstractException
 {
-
 }
