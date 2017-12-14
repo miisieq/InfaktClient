@@ -1,14 +1,15 @@
 <?php
+declare(strict_types=1);
 
 namespace Infakt\Model;
 
 /**
- * This entity represents a Client
+ * This entity represents a client
  *
  * @link https://www.infakt.pl/developers/clients.html#def
  * @package Infakt\Model
  */
-class Client extends AbstractEntity
+class Client implements EntityInterface
 {
 
     /**
@@ -155,7 +156,7 @@ class Client extends AbstractEntity
     /**
      * @return int
      */
-    public function getId()
+    public function getId(): int
     {
         return $this->id;
     }
@@ -164,16 +165,17 @@ class Client extends AbstractEntity
      * @param int $id
      * @return Client
      */
-    public function setId($id)
+    public function setId(int $id): Client
     {
         $this->id = $id;
+
         return $this;
     }
 
     /**
      * @return string
      */
-    public function getCompanyName()
+    public function getCompanyName(): string
     {
         return $this->companyName;
     }
@@ -182,7 +184,7 @@ class Client extends AbstractEntity
      * @param string $companyName
      * @return Client
      */
-    public function setCompanyName($companyName)
+    public function setCompanyName(string $companyName): Client
     {
         $this->companyName = $companyName;
         return $this;
@@ -191,7 +193,7 @@ class Client extends AbstractEntity
     /**
      * @return string
      */
-    public function getStreet()
+    public function getStreet(): string
     {
         return $this->street;
     }
@@ -200,17 +202,16 @@ class Client extends AbstractEntity
      * @param string $street
      * @return Client
      */
-    public function setStreet($street)
+    public function setStreet(string $street): Client
     {
-        $this->street = $street ? : null;
-
+        $this->street = $street;
         return $this;
     }
 
     /**
      * @return string
      */
-    public function getCity()
+    public function getCity(): string
     {
         return $this->city;
     }
@@ -219,16 +220,16 @@ class Client extends AbstractEntity
      * @param string $city
      * @return Client
      */
-    public function setCity($city)
+    public function setCity(string $city): Client
     {
-        $this->city = $city ? : null;
+        $this->city = $city;
         return $this;
     }
 
     /**
      * @return string
      */
-    public function getCountry()
+    public function getCountry(): string
     {
         return $this->country;
     }
@@ -237,16 +238,16 @@ class Client extends AbstractEntity
      * @param string $country
      * @return Client
      */
-    public function setCountry($country)
+    public function setCountry(string $country): Client
     {
-        $this->country = $country ? : null;
+        $this->country = $country;
         return $this;
     }
 
     /**
      * @return string
      */
-    public function getPostalCode()
+    public function getPostalCode(): string
     {
         return $this->postalCode;
     }
@@ -255,16 +256,16 @@ class Client extends AbstractEntity
      * @param string $postalCode
      * @return Client
      */
-    public function setPostalCode($postalCode)
+    public function setPostalCode(string $postalCode): Client
     {
-        $this->postalCode = $postalCode ? : null;
+        $this->postalCode = $postalCode;
         return $this;
     }
 
     /**
      * @return string
      */
-    public function getNip()
+    public function getNip(): string
     {
         return $this->nip;
     }
@@ -273,16 +274,16 @@ class Client extends AbstractEntity
      * @param string $nip
      * @return Client
      */
-    public function setNip($nip)
+    public function setNip(string $nip): Client
     {
-        $this->nip = $nip ? : null;
+        $this->nip = $nip;
         return $this;
     }
 
     /**
      * @return string
      */
-    public function getPhoneNumber()
+    public function getPhoneNumber(): string
     {
         return $this->phoneNumber;
     }
@@ -291,25 +292,25 @@ class Client extends AbstractEntity
      * @param string $phoneNumber
      * @return Client
      */
-    public function setPhoneNumber($phoneNumber)
+    public function setPhoneNumber(string $phoneNumber): Client
     {
-        $this->phoneNumber = $phoneNumber ? : null;
+        $this->phoneNumber = $phoneNumber;
         return $this;
     }
 
     /**
-     * @return boolean
+     * @return bool
      */
-    public function isSameForwardAddress()
+    public function isSameForwardAddress(): bool
     {
         return $this->sameForwardAddress;
     }
 
     /**
-     * @param boolean $sameForwardAddress
+     * @param bool $sameForwardAddress
      * @return Client
      */
-    public function setSameForwardAddress($sameForwardAddress)
+    public function setSameForwardAddress(bool $sameForwardAddress): Client
     {
         $this->sameForwardAddress = $sameForwardAddress;
         return $this;
@@ -318,7 +319,7 @@ class Client extends AbstractEntity
     /**
      * @return string
      */
-    public function getWebsite()
+    public function getWebsite(): string
     {
         return $this->website;
     }
@@ -327,16 +328,16 @@ class Client extends AbstractEntity
      * @param string $website
      * @return Client
      */
-    public function setWebsite($website)
+    public function setWebsite(string $website): Client
     {
-        $this->website = $website ? : null;
+        $this->website = $website;
         return $this;
     }
 
     /**
      * @return string
      */
-    public function getEmail()
+    public function getEmail(): string
     {
         return $this->email;
     }
@@ -345,16 +346,16 @@ class Client extends AbstractEntity
      * @param string $email
      * @return Client
      */
-    public function setEmail($email)
+    public function setEmail(string $email): Client
     {
-        $this->email = $email ? : null;
+        $this->email = $email;
         return $this;
     }
 
     /**
      * @return string
      */
-    public function getNote()
+    public function getNote(): string
     {
         return $this->note;
     }
@@ -363,16 +364,16 @@ class Client extends AbstractEntity
      * @param string $note
      * @return Client
      */
-    public function setNote($note)
+    public function setNote(string $note): Client
     {
-        $this->note = $note ? : null;
+        $this->note = $note;
         return $this;
     }
 
     /**
      * @return string
      */
-    public function getReceiver()
+    public function getReceiver(): string
     {
         return $this->receiver;
     }
@@ -381,16 +382,16 @@ class Client extends AbstractEntity
      * @param string $receiver
      * @return Client
      */
-    public function setReceiver($receiver)
+    public function setReceiver(string $receiver): Client
     {
-        $this->receiver = $receiver ? : null;
+        $this->receiver = $receiver;
         return $this;
     }
 
     /**
      * @return string
      */
-    public function getMailingCompanyName()
+    public function getMailingCompanyName(): string
     {
         return $this->mailingCompanyName;
     }
@@ -399,16 +400,16 @@ class Client extends AbstractEntity
      * @param string $mailingCompanyName
      * @return Client
      */
-    public function setMailingCompanyName($mailingCompanyName)
+    public function setMailingCompanyName(string $mailingCompanyName): Client
     {
-        $this->mailingCompanyName = $mailingCompanyName ? : null;
+        $this->mailingCompanyName = $mailingCompanyName;
         return $this;
     }
 
     /**
      * @return string
      */
-    public function getMailingStreet()
+    public function getMailingStreet(): string
     {
         return $this->mailingStreet;
     }
@@ -417,16 +418,16 @@ class Client extends AbstractEntity
      * @param string $mailingStreet
      * @return Client
      */
-    public function setMailingStreet($mailingStreet)
+    public function setMailingStreet(string $mailingStreet): Client
     {
-        $this->mailingStreet = $mailingStreet ? : null;
+        $this->mailingStreet = $mailingStreet;
         return $this;
     }
 
     /**
      * @return string
      */
-    public function getMailingCity()
+    public function getMailingCity(): string
     {
         return $this->mailingCity;
     }
@@ -435,16 +436,16 @@ class Client extends AbstractEntity
      * @param string $mailingCity
      * @return Client
      */
-    public function setMailingCity($mailingCity)
+    public function setMailingCity(string $mailingCity): Client
     {
-        $this->mailingCity = $mailingCity ? : null;
+        $this->mailingCity = $mailingCity;
         return $this;
     }
 
     /**
      * @return string
      */
-    public function getMailingPostalCode()
+    public function getMailingPostalCode(): string
     {
         return $this->mailingPostalCode;
     }
@@ -453,34 +454,35 @@ class Client extends AbstractEntity
      * @param string $mailingPostalCode
      * @return Client
      */
-    public function setMailingPostalCode($mailingPostalCode)
+    public function setMailingPostalCode(string $mailingPostalCode): Client
     {
-        $this->mailingPostalCode = $mailingPostalCode ? : null;
+        $this->mailingPostalCode = $mailingPostalCode;
         return $this;
     }
 
     /**
      * @return int
      */
-    public function getDaysToPayment()
+    public function getDaysToPayment(): int
     {
         return $this->daysToPayment;
     }
 
     /**
-     * @param int $daysToPayment
+     * @param int|null $daysToPayment
      * @return Client
      */
-    public function setDaysToPayment($daysToPayment)
+    public function setDaysToPayment(?int $daysToPayment): Client
     {
-        $this->daysToPayment = is_numeric($daysToPayment) ? (int)$daysToPayment : null;
+        $this->daysToPayment = $daysToPayment;
+        
         return $this;
     }
 
     /**
      * @return string
      */
-    public function getInvoiceNote()
+    public function getInvoiceNote(): string
     {
         return $this->invoiceNote;
     }
@@ -489,16 +491,16 @@ class Client extends AbstractEntity
      * @param string $invoiceNote
      * @return Client
      */
-    public function setInvoiceNote($invoiceNote)
+    public function setInvoiceNote(string $invoiceNote): Client
     {
-        $this->invoiceNote = $invoiceNote ? : null;
+        $this->invoiceNote = $invoiceNote;
         return $this;
     }
 
     /**
      * @return string
      */
-    public function getPaymentMethod()
+    public function getPaymentMethod(): string
     {
         return $this->paymentMethod;
     }
@@ -507,10 +509,9 @@ class Client extends AbstractEntity
      * @param string $paymentMethod
      * @return Client
      */
-    public function setPaymentMethod($paymentMethod)
+    public function setPaymentMethod(string $paymentMethod): Client
     {
-        $this->paymentMethod = $paymentMethod ? : null;
+        $this->paymentMethod = $paymentMethod;
         return $this;
     }
-
 }

@@ -1,4 +1,5 @@
 <?php
+declare(strict_types=1);
 
 namespace Infakt\Collections;
 
@@ -61,5 +62,4 @@ class Comparison
     {
         return $this->op;
     }
-
 }

@@ -3,14 +3,15 @@
 namespace Infakt\Repository;
 
 use Infakt\Collections\Criteria;
-use Infakt\Model\AbstractEntity;
+use Infakt\Model\EntityInterface;
 
 interface ObjectRepositoryInterface
 {
-
     public function matching(Criteria $criteria);
 
-    public function get($entityId);
+    public function get(int $entityId);
 
-    public function create(AbstractEntity $entity);
+    public function getAll(int $page, int $limit);
+
+    public function create(EntityInterface $entity);
 }

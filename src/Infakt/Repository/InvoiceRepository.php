@@ -6,7 +6,6 @@ use Infakt\Model\Invoice;
 
 class InvoiceRepository extends AbstractObjectRepository
 {
-
     public function getNextNumber($kind = 'vat')
     {
         $kinds = ['final', 'advance', 'margin', 'proforma', 'vat'];
@@ -16,13 +15,9 @@ class InvoiceRepository extends AbstractObjectRepository
         }
 
         $query = $this->getServiceName() . '/next_number.json?kind=' . $kind;
-        $response = $this->client->get($query);
+        $response = $this->infakt->get($query);
 
         $data = \GuzzleHttp\json_decode($response->getBody()->getContents(), true);
-
-        if (!array_key_exists('next_number', $data)) {
-
-        }
 
         return (string) $data['next_number'];
     }
@@ -30,9 +25,8 @@ class InvoiceRepository extends AbstractObjectRepository
     public function markAsPaid(Invoice $invoice, \DateTime $paidDate = null)
     {
         $query = $this->getServiceName() . '/' . $invoice->getId() . '/paid.json';
-        $this->client->post($query);
+        $this->infakt->post($query);
 
         return;
     }
-
 }

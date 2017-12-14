@@ -1,12 +1,12 @@
 <?php
+declare(strict_types=1);
 
 namespace Infakt\Collections;
 
-use Infakt\Model\AbstractEntity;
+use Infakt\Model\EntityInterface;
 
 class CollectionResult
 {
-
     /**
      * @var int
      */
@@ -20,10 +20,10 @@ class CollectionResult
     /**
      * Add item to collection
      *
-     * @param AbstractEntity $item
+     * @param EntityInterface $item
      * @return $this
      */
-    public function addItemToCollection(AbstractEntity $item)
+    public function addItemToCollection(EntityInterface $item): CollectionResult
     {
         $this->collection[] = $item;
 
@@ -43,7 +43,7 @@ class CollectionResult
     /**
      * Set collection
      *
-     * @param AbstractEntity[] $collection
+     * @param EntityInterface[] $collection
      * @return $this
      */
     public function setCollection(array $collection)

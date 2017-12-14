@@ -1,8 +1,18 @@
 <?php
+declare(strict_types=1);
 
 namespace Infakt\Model;
 
-class Invoice extends AbstractEntity
+use Infakt\Model\Invoice\Extension;
+use Infakt\Model\Invoice\Service;
+
+/**
+ * This entity represents an invoice
+ *
+ * @link https://www.infakt.pl/developers/invoices.html#def
+ * @package Infakt\Model
+ */
+class Invoice implements EntityInterface
 {
     /**
      * @var int
@@ -20,12 +30,12 @@ class Invoice extends AbstractEntity
     protected $currency;
 
     /**
-     * @var int
+     * @var float
      */
     protected $paidPrice;
 
     /**
-     * @var string
+     * @var \DateTime
      */
     protected $paidDate;
 
@@ -55,12 +65,12 @@ class Invoice extends AbstractEntity
     protected $sellerSignature;
 
     /**
-     * @var string
+     * @var \DateTime
      */
     protected $invoiceDate;
 
     /**
-     * @var string
+     * @var \DateTime
      */
     protected $saleDate;
 
@@ -69,22 +79,22 @@ class Invoice extends AbstractEntity
      */
     protected $status;
     /**
-     * @var string
+     * @var \DateTime
      */
     protected $paymentDate;
 
     /**
-     * @var int
+     * @var float
      */
     protected $netPrice;
 
     /**
-     * @var int
+     * @var float
      */
     protected $taxPrice;
 
     /**
-     * @var int
+     * @var float
      */
     protected $grossPrice;
 
@@ -118,34 +128,55 @@ class Invoice extends AbstractEntity
      */
     protected $clientTaxCode;
 
-    protected $clientCountry;
-
     /**
-     * @var bool
+     * @var string
      */
-    protected $checkDuplicateNumber = true;
+    protected $clientCountry;
 
     /**
      * @var string
      */
     protected $bankName;
 
+    /**
+     * @var string
+     */
     protected $bankAccount;
 
+    /**
+     * @var string
+     */
     protected $swift;
 
+    /**
+     * @var string
+     */
     protected $saleType;
 
+    /**
+     * @var string
+     */
     protected $invoiceDateKind;
 
+    /**
+     * @var Service[]
+     */
     protected $services;
 
+    /**
+     * @var int
+     */
     protected $vatExemptionReason;
+
+    /**
+     * @var Extension
+     */
+    protected $extensions;
 
     /**
      * @return int
      */
-    public function getId()
+    public function getId(): int
     {
         return $this->id;
     }
@@ -154,7 +185,7 @@ class Invoice extends AbstractEntity
      * @param int $id
      * @return Invoice
      */
-    public function setId($id)
+    public function setId(int $id): Invoice
     {
         $this->id = $id;
         return $this;
@@ -163,7 +194,7 @@ class Invoice extends AbstractEntity
     /**
      * @return string
      */
-    public function getNumber()
+    public function getNumber(): string
     {
         return $this->number;
     }
@@ -172,7 +203,7 @@ class Invoice extends AbstractEntity
      * @param string $number
      * @return Invoice
      */
-    public function setNumber($number)
+    public function setNumber(string $number): Invoice
     {
         $this->number = $number;
         return $this;
@@ -181,7 +212,7 @@ class Invoice extends AbstractEntity
     /**
      * @return string
      */
-    public function getCurrency()
+    public function getCurrency(): string
     {
         return $this->currency;
     }
@@ -190,54 +221,52 @@ class Invoice extends AbstractEntity
      * @param string $currency
      * @return Invoice
      */
-    public function setCurrency($currency)
+    public function setCurrency(string $currency): Invoice
     {
         $this->currency = $currency;
         return $this;
     }
 
     /**
-     * @return int
+     * @return float
      */
-    public function getPaidPrice()
+    public function getPaidPrice(): float
     {
         return $this->paidPrice;
     }
 
     /**
-     * @param int $paidPrice
+     * @param float $paidPrice
      * @return Invoice
      */
-    public function setPaidPrice($paidPrice)
+    public function setPaidPrice(float $paidPrice): Invoice
     {
         $this->paidPrice = $paidPrice;
         return $this;
     }
 
     /**
-     * @return string
+     * @return \DateTime
      */
-    public function getPaidDate()
+    public function getPaidDate(): \DateTime
     {
         return $this->paidDate;
     }
 
     /**
-     * @param string $paidDate
+     * @param \DateTime|null $paidDate
      * @return Invoice
      */
-    public function setPaidDate($paidDate)
+    public function setPaidDate(?\DateTime $paidDate): Invoice
     {
         $this->paidDate = $paidDate;
         return $this;
     }
 
-
-
     /**
      * @return string
      */
-    public function getNotes()
+    public function getNotes(): string
     {
         return $this->notes;
     }
@@ -246,7 +275,7 @@ class Invoice extends AbstractEntity
      * @param string $notes
      * @return Invoice
      */
-    public function setNotes($notes)
+    public function setNotes(string $notes): Invoice
     {
         $this->notes = $notes;
         return $this;
@@ -255,7 +284,7 @@ class Invoice extends AbstractEntity
     /**
      * @return string
      */
-    public function getKind()
+    public function getKind(): string
     {
         return $this->kind;
     }
@@ -264,16 +293,16 @@ class Invoice extends AbstractEntity
      * @param string $kind
      * @return Invoice
      */
-    public function setKind($kind)
+    public function setKind(string $kind): Invoice
     {
         $this->kind = $kind;
         return $this;
     }
 
     /**
-     * @return string
+     * @return string|null
      */
-    public function getPaymentMethod()
+    public function getPaymentMethod(): ?string
     {
         return $this->paymentMethod;
     }
@@ -282,16 +311,16 @@ class Invoice extends AbstractEntity
      * @param string $paymentMethod
      * @return Invoice
      */
-    public function setPaymentMethod($paymentMethod)
+    public function setPaymentMethod(string $paymentMethod): Invoice
     {
         $this->paymentMethod = $paymentMethod;
         return $this;
     }
 
     /**
-     * @return string
+     * @return string|null
      */
-    public function getRecipientSignature()
+    public function getRecipientSignature(): ?string
     {
         return $this->recipientSignature;
     }
@@ -300,16 +329,16 @@ class Invoice extends AbstractEntity
      * @param string $recipientSignature
      * @return Invoice
      */
-    public function setRecipientSignature($recipientSignature)
+    public function setRecipientSignature(string $recipientSignature): Invoice
     {
         $this->recipientSignature = $recipientSignature;
         return $this;
     }
 
     /**
-     * @return string
+     * @return string|null
      */
-    public function getSellerSignature()
+    public function getSellerSignature(): ?string
     {
         return $this->sellerSignature;
     }
@@ -318,43 +347,43 @@ class Invoice extends AbstractEntity
      * @param string $sellerSignature
      * @return Invoice
      */
-    public function setSellerSignature($sellerSignature)
+    public function setSellerSignature(string $sellerSignature): Invoice
     {
         $this->sellerSignature = $sellerSignature;
         return $this;
     }
 
     /**
-     * @return string
+     * @return \DateTime
      */
-    public function getInvoiceDate()
+    public function getInvoiceDate(): ?\DateTime
     {
         return $this->invoiceDate;
     }
 
     /**
-     * @param string $invoiceDate
+     * @param \DateTime $invoiceDate
      * @return Invoice
      */
-    public function setInvoiceDate($invoiceDate)
+    public function setInvoiceDate(\DateTime $invoiceDate): Invoice
     {
         $this->invoiceDate = $invoiceDate;
         return $this;
     }
 
     /**
-     * @return string
+     * @return \DateTime
      */
-    public function getSaleDate()
+    public function getSaleDate(): ?\DateTime
     {
         return $this->saleDate;
     }
 
     /**
-     * @param string $saleDate
+     * @param \DateTime $saleDate
      * @return Invoice
      */
-    public function setSaleDate($saleDate)
+    public function setSaleDate(\DateTime $saleDate): Invoice
     {
         $this->saleDate = $saleDate;
         return $this;
@@ -363,7 +392,7 @@ class Invoice extends AbstractEntity
     /**
      * @return string
      */
-    public function getStatus()
+    public function getStatus(): string
     {
         return $this->status;
     }
@@ -372,79 +401,79 @@ class Invoice extends AbstractEntity
      * @param string $status
      * @return Invoice
      */
-    public function setStatus($status)
+    public function setStatus(string $status): Invoice
     {
         $this->status = $status;
         return $this;
     }
 
     /**
-     * @return string
+     * @return \DateTime
      */
-    public function getPaymentDate()
+    public function getPaymentDate(): \DateTime
     {
         return $this->paymentDate;
     }
 
     /**
-     * @param string $paymentDate
+     * @param \DateTime $paymentDate
      * @return Invoice
      */
-    public function setPaymentDate($paymentDate)
+    public function setPaymentDate(\DateTime $paymentDate): Invoice
     {
         $this->paymentDate = $paymentDate;
         return $this;
     }
 
     /**
-     * @return int
+     * @return float
      */
-    public function getNetPrice()
+    public function getNetPrice(): float
     {
         return $this->netPrice;
     }
 
     /**
-     * @param int $netPrice
+     * @param float $netPrice
      * @return Invoice
      */
-    public function setNetPrice($netPrice)
+    public function setNetPrice(float $netPrice): Invoice
     {
         $this->netPrice = $netPrice;
         return $this;
     }
 
     /**
-     * @return int
+     * @return float
      */
-    public function getTaxPrice()
+    public function getTaxPrice(): float
     {
         return $this->taxPrice;
     }
 
     /**
-     * @param int $taxPrice
+     * @param float $taxPrice
      * @return Invoice
      */
-    public function setTaxPrice($taxPrice)
+    public function setTaxPrice(float $taxPrice): Invoice
     {
         $this->taxPrice = $taxPrice;
         return $this;
     }
 
     /**
-     * @return int
+     * @return float
      */
-    public function getGrossPrice()
+    public function getGrossPrice(): float
     {
         return $this->grossPrice;
     }
 
     /**
-     * @param int $grossPrice
+     * @param float $grossPrice
      * @return Invoice
      */
-    public function setGrossPrice($grossPrice)
+    public function setGrossPrice(float $grossPrice): Invoice
     {
         $this->grossPrice = $grossPrice;
         return $this;
@@ -453,7 +482,7 @@ class Invoice extends AbstractEntity
     /**
      * @return int
      */
-    public function getClientId()
+    public function getClientId(): int
     {
         return $this->clientId;
     }
@@ -462,7 +491,7 @@ class Invoice extends AbstractEntity
      * @param int $clientId
      * @return Invoice
      */
-    public function setClientId($clientId)
+    public function setClientId(int $clientId): Invoice
     {
         $this->clientId = $clientId;
         return $this;
@@ -471,7 +500,7 @@ class Invoice extends AbstractEntity
     /**
      * @return string
      */
-    public function getClientCompanyName()
+    public function getClientCompanyName(): string
     {
         return $this->clientCompanyName;
     }
@@ -480,7 +509,7 @@ class Invoice extends AbstractEntity
      * @param string $clientCompanyName
      * @return Invoice
      */
-    public function setClientCompanyName($clientCompanyName)
+    public function setClientCompanyName(string $clientCompanyName): Invoice
     {
         $this->clientCompanyName = $clientCompanyName;
         return $this;
@@ -489,7 +518,7 @@ class Invoice extends AbstractEntity
     /**
      * @return string
      */
-    public function getClientStreet()
+    public function getClientStreet(): string
     {
         return $this->clientStreet;
     }
@@ -498,7 +527,7 @@ class Invoice extends AbstractEntity
      * @param string $clientStreet
      * @return Invoice
      */
-    public function setClientStreet($clientStreet)
+    public function setClientStreet(string $clientStreet): Invoice
     {
         $this->clientStreet = $clientStreet;
         return $this;
@@ -507,7 +536,7 @@ class Invoice extends AbstractEntity
     /**
      * @return string
      */
-    public function getClientCity()
+    public function getClientCity(): string
     {
         return $this->clientCity;
     }
@@ -516,7 +545,7 @@ class Invoice extends AbstractEntity
      * @param string $clientCity
      * @return Invoice
      */
-    public function setClientCity($clientCity)
+    public function setClientCity(string $clientCity): Invoice
     {
         $this->clientCity = $clientCity;
         return $this;
@@ -525,7 +554,7 @@ class Invoice extends AbstractEntity
     /**
      * @return string
      */
-    public function getClientPostCode()
+    public function getClientPostCode(): string
     {
         return $this->clientPostCode;
     }
@@ -534,7 +563,7 @@ class Invoice extends AbstractEntity
      * @param string $clientPostCode
      * @return Invoice
      */
-    public function setClientPostCode($clientPostCode)
+    public function setClientPostCode(string $clientPostCode): Invoice
     {
         $this->clientPostCode = $clientPostCode;
         return $this;
@@ -543,7 +572,7 @@ class Invoice extends AbstractEntity
     /**
      * @return string
      */
-    public function getClientTaxCode()
+    public function getClientTaxCode(): string
     {
         return $this->clientTaxCode;
     }
@@ -552,52 +581,34 @@ class Invoice extends AbstractEntity
      * @param string $clientTaxCode
      * @return Invoice
      */
-    public function setClientTaxCode($clientTaxCode)
+    public function setClientTaxCode(string $clientTaxCode): Invoice
     {
-        $this->clientTaxCode = $clientTaxCode ? : null;
-        return $this;
-    }
-
-    /**
-     * @return mixed
-     */
-    public function getClientCountry()
-    {
-        return $this->clientCountry;
-    }
-
-    /**
-     * @param mixed $clientCountry
-     * @return Invoice
-     */
-    public function setClientCountry($clientCountry)
-    {
-        $this->clientCountry = $clientCountry;
-        return $this;
-    }
-
-    /**
-     * @return boolean
-     */
-    public function isCheckDuplicateNumber()
-    {
-        return $this->checkDuplicateNumber;
-    }
-
-    /**
-     * @param boolean $checkDuplicateNumber
-     * @return Invoice
-     */
-    public function setCheckDuplicateNumber($checkDuplicateNumber)
-    {
-        $this->checkDuplicateNumber = $checkDuplicateNumber;
+        $this->clientTaxCode = $clientTaxCode;
         return $this;
     }
 
     /**
      * @return string
      */
-    public function getBankName()
+    public function getClientCountry(): string
+    {
+        return $this->clientCountry;
+    }
+
+    /**
+     * @param string $clientCountry
+     * @return Invoice
+     */
+    public function setClientCountry(string $clientCountry): Invoice
+    {
+        $this->clientCountry = $clientCountry;
+        return $this;
+    }
+
+    /**
+     * @return string
+     */
+    public function getBankName(): string
     {
         return $this->bankName;
     }
@@ -606,120 +617,136 @@ class Invoice extends AbstractEntity
      * @param string $bankName
      * @return Invoice
      */
-    public function setBankName($bankName)
+    public function setBankName(string $bankName): Invoice
     {
         $this->bankName = $bankName;
         return $this;
     }
 
     /**
-     * @return mixed
+     * @return string
      */
-    public function getBankAccount()
+    public function getBankAccount(): string
     {
         return $this->bankAccount;
     }
 
     /**
-     * @param mixed $bankAccount
+     * @param string $bankAccount
      * @return Invoice
      */
-    public function setBankAccount($bankAccount)
+    public function setBankAccount(string $bankAccount): Invoice
     {
         $this->bankAccount = $bankAccount;
         return $this;
     }
 
     /**
-     * @return mixed
+     * @return string
      */
-    public function getSwift()
+    public function getSwift(): string
     {
         return $this->swift;
     }
 
     /**
-     * @param mixed $swift
+     * @param string $swift
      * @return Invoice
      */
-    public function setSwift($swift)
+    public function setSwift(string $swift): Invoice
     {
         $this->swift = $swift;
         return $this;
     }
 
     /**
-     * @return mixed
+     * @return string
      */
-    public function getSaleType()
+    public function getSaleType(): ?string
     {
         return $this->saleType;
     }
 
     /**
-     * @param mixed $saleType
+     * @param string $saleType
      * @return Invoice
      */
-    public function setSaleType($saleType)
+    public function setSaleType(string $saleType): Invoice
     {
         $this->saleType = $saleType;
         return $this;
     }
 
     /**
-     * @return mixed
+     * @return string
      */
-    public function getInvoiceDateKind()
+    public function getInvoiceDateKind(): string
     {
         return $this->invoiceDateKind;
     }
 
     /**
-     * @param mixed $invoiceDateKind
+     * @param string $invoiceDateKind
      * @return Invoice
      */
-    public function setInvoiceDateKind($invoiceDateKind)
+    public function setInvoiceDateKind(string $invoiceDateKind): Invoice
     {
         $this->invoiceDateKind = $invoiceDateKind;
         return $this;
     }
 
     /**
-     * @return mixed
+     * @return Service[]
      */
-    public function getServices()
+    public function getServices(): array
     {
         return $this->services;
     }
 
     /**
-     * @param mixed $services
+     * @param Service[] $services
      * @return Invoice
      */
-    public function setServices($services)
+    public function setServices(array $services): Invoice
     {
         $this->services = $services;
         return $this;
     }
 
     /**
-     * @return mixed
+     * @return int
      */
-    public function getVatExemptionReason()
+    public function getVatExemptionReason(): int
     {
         return $this->vatExemptionReason;
     }
 
     /**
-     * @param mixed $vatExemptionReason
+     * @param int|null $vatExemptionReason
      * @return Invoice
      */
-    public function setVatExemptionReason($vatExemptionReason)
+    public function setVatExemptionReason(?int $vatExemptionReason): Invoice
     {
         $this->vatExemptionReason = $vatExemptionReason;
+
         return $this;
     }
 
+    /**
+     * @return Extension
+     */
+    public function getExtensions(): Extension
+    {
+        return $this->extensions;
+    }
 
-
+    /**
+     * @param Extension $extensions
+     * @return Invoice
+     */
+    public function setExtensions(Extension $extensions): Invoice
+    {
+        $this->extensions = $extensions;
+        return $this;
+    }
 }
