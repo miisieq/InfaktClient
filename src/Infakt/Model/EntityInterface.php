@@ -1,4 +1,5 @@
 <?php
+
 declare(strict_types=1);
 
 namespace Infakt\Model;
@@ -12,6 +13,7 @@ interface EntityInterface
 
     /**
      * @param $id
+     *
      * @return $this
      */
     public function setId(int $id);

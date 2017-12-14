@@ -24,9 +24,10 @@ abstract class AbstractExtension implements ExtensionInterface
 
     /**
      * @param string $link
+     *
      * @return $this
      */
-    public function setLink(?string $link): AbstractExtension
+    public function setLink(?string $link): self
     {
         $this->link = $link;
 
@@ -43,9 +44,10 @@ abstract class AbstractExtension implements ExtensionInterface
 
     /**
      * @param bool $available
+     *
      * @return $this
      */
-    public function setAvailable(bool $available): AbstractExtension
+    public function setAvailable(bool $available): self
     {
         $this->available = $available;
 

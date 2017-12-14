@@ -1,4 +1,5 @@
 <?php
+
 declare(strict_types=1);
 
 namespace Infakt\Tests\Mapper;
@@ -20,7 +21,6 @@ class CollectionResultTest extends TestCase
         $collectionResult->setCollection([$client1, $client2, $client3]);
         $collectionResult->addItemToCollection($client4);
         $collectionResult->setTotalCount(4);
-
 
         $this->assertInstanceOf(CollectionResult::class, $collectionResult);
         $this->assertSame(4, $collectionResult->getTotalCount());

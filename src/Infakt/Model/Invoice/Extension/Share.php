@@ -19,6 +19,7 @@ class Share extends AbstractExtension
 
     /**
      * @param \DateTime|null $validUntil
+     *
      * @return Share
      */
     public function setValidUntil($validUntil)

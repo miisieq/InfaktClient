@@ -1,4 +1,5 @@
 <?php
+
 declare(strict_types=1);
 
 namespace Infakt\Collections;
@@ -18,12 +19,13 @@ class CollectionResult
     protected $collection = [];
 
     /**
-     * Add item to collection
+     * Add item to collection.
      *
      * @param EntityInterface $item
+     *
      * @return $this
      */
-    public function addItemToCollection(EntityInterface $item): CollectionResult
+    public function addItemToCollection(EntityInterface $item): self
     {
         $this->collection[] = $item;
 
@@ -31,7 +33,7 @@ class CollectionResult
     }
 
     /**
-     * Get collection
+     * Get collection.
      *
      * @return array
      */
@@ -41,9 +43,10 @@ class CollectionResult
     }
 
     /**
-     * Set collection
+     * Set collection.
      *
      * @param EntityInterface[] $collection
+     *
      * @return $this
      */
     public function setCollection(array $collection)
@@ -54,7 +57,7 @@ class CollectionResult
     }
 
     /**
-     * Get collection total count
+     * Get collection total count.
      *
      * @return int
      */
@@ -64,9 +67,10 @@ class CollectionResult
     }
 
     /**
-     * Set collection total count
+     * Set collection total count.
      *
      * @param int $totalCount
+     *
      * @return $this
      */
     public function setTotalCount($totalCount)

@@ -2,13 +2,13 @@
 
 namespace Infakt\Repository;
 
-use Infakt\Infakt;
-use Infakt\Model\EntityInterface;
-use Infakt\Collections\Criteria;
-use Infakt\Collections\CollectionResult;
-use Infakt\Exception\ApiException;
-use Infakt\Mapper\MapperInterface;
 use Doctrine\Common\Inflector\Inflector;
+use Infakt\Collections\CollectionResult;
+use Infakt\Collections\Criteria;
+use Infakt\Exception\ApiException;
+use Infakt\Infakt;
+use Infakt\Mapper\MapperInterface;
+use Infakt\Model\EntityInterface;
 
 abstract class AbstractObjectRepository implements ObjectRepositoryInterface
 {
@@ -18,14 +18,14 @@ abstract class AbstractObjectRepository implements ObjectRepositoryInterface
     protected $infakt;
 
     /**
-     * Fully-qualified class name of a model
+     * Fully-qualified class name of a model.
      *
      * @var string
      */
     protected $modelClass;
 
     /**
-     * Fully-qualified class name of a mapper
+     * Fully-qualified class name of a mapper.
      *
      * @var string
      */
@@ -45,21 +45,25 @@ abstract class AbstractObjectRepository implements ObjectRepositoryInterface
     }
 
     /**
-     * Get entity by ID
+     * Get entity by ID.
      *
      * @param $entityId
+     *
      * @return EntityInterface
      */
     public function get(int $entityId)
     {
-        $response = $this->infakt->get($this->getServiceName() . '/' . $entityId . '.json');
-var_dump(\GuzzleHttp\json_decode($response->getBody()->getContents(), true));exit;
+        $response = $this->infakt->get($this->getServiceName().'/'.$entityId.'.json');
+        var_dump(\GuzzleHttp\json_decode($response->getBody()->getContents(), true));
+        exit;
+
         return $this->getMapper()->map(\GuzzleHttp\json_decode($response->getBody()->getContents(), true));
     }
 
     /**
      * @param int $page
      * @param int $limit
+     *
      * @return CollectionResult
      */
     public function getAll(int $page = 1, int $limit = 25)
@@ -69,6 +73,7 @@ var_dump(\GuzzleHttp\json_decode($response->getBody()->getContents(), true));exi
 
     /**
      * @param Criteria $criteria
+     *
      * @return CollectionResult
      */
     public function matching(Criteria $criteria)
@@ -83,11 +88,11 @@ var_dump(\GuzzleHttp\json_decode($response->getBody()->getContents(), true));exi
 
     public function buildQuery(Criteria $criteria)
     {
-        $query = $this->getServiceName() . '.json';
+        $query = $this->getServiceName().'.json';
         $parameters = $this->buildQueryParameters($criteria);
 
         if ($parameters) {
-            $query .= '?' . $parameters;
+            $query .= '?'.$parameters;
         }
 
         return $query;
@@ -102,7 +107,7 @@ var_dump(\GuzzleHttp\json_decode($response->getBody()->getContents(), true));exi
                 $query .= '&';
             }
 
-            $query .= 'q[' . $comparison->getField() . '_' . $comparison->getOperator() . ']=' . $comparison->getValue();
+            $query .= 'q['.$comparison->getField().'_'.$comparison->getOperator().']='.$comparison->getValue();
         }
 
         foreach ($criteria->getSortClauses() as $sortClause) {
@@ -110,7 +115,7 @@ var_dump(\GuzzleHttp\json_decode($response->getBody()->getContents(), true));exi
                 $query .= '&';
             }
 
-            $query .= 'order=' . $sortClause->getField() . ' ' . $sortClause->getOrder();
+            $query .= 'order='.$sortClause->getField().' '.$sortClause->getOrder();
         }
 
         if ($criteria->getFirstResult()
@@ -120,8 +125,8 @@ var_dump(\GuzzleHttp\json_decode($response->getBody()->getContents(), true));exi
                 $query .= '&';
             }
 
-            $query .= 'offset=' . $criteria->getFirstResult();
-            $query .= '&limit=' . $criteria->getMaxResults();
+            $query .= 'offset='.$criteria->getFirstResult();
+            $query .= '&limit='.$criteria->getMaxResults();
         }
 
         return $query;
@@ -129,8 +134,10 @@ var_dump(\GuzzleHttp\json_decode($response->getBody()->getContents(), true));exi
 
     /**
      * @param Criteria $criteria
-     * @return CollectionResult
+     *
      * @throws ApiException
+     *
+     * @return CollectionResult
      */
     protected function match(Criteria $criteria)
     {
@@ -141,7 +148,7 @@ var_dump(\GuzzleHttp\json_decode($response->getBody()->getContents(), true));exi
             && array_key_exists('total_count', $data['metainfo'])
             && array_key_exists('entities', $data))
         ) {
-            throw new ApiException("Response does not contain required fields.");
+            throw new ApiException('Response does not contain required fields.');
         }
 
         $mapper = $this->getMapper();
@@ -157,7 +164,7 @@ var_dump(\GuzzleHttp\json_decode($response->getBody()->getContents(), true));exi
     }
 
     /**
-     * Gets API service name, for example: "clients" or "bank_accounts"
+     * Gets API service name, for example: "clients" or "bank_accounts".
      *
      * @return string
      */
@@ -167,7 +174,7 @@ var_dump(\GuzzleHttp\json_decode($response->getBody()->getContents(), true));exi
     }
 
     /**
-     * Gets entity name, for example: "client"
+     * Gets entity name, for example: "client".
      *
      * @return string
      */
@@ -177,7 +184,7 @@ var_dump(\GuzzleHttp\json_decode($response->getBody()->getContents(), true));exi
     }
 
     /**
-     * Get fully-qualified class name of a model
+     * Get fully-qualified class name of a model.
      *
      * @return string
      */
@@ -190,7 +197,7 @@ var_dump(\GuzzleHttp\json_decode($response->getBody()->getContents(), true));exi
     }
 
     /**
-     * Get fully-qualified class name of a mapper
+     * Get fully-qualified class name of a mapper.
      *
      * @return string
      */
@@ -203,7 +210,7 @@ var_dump(\GuzzleHttp\json_decode($response->getBody()->getContents(), true));exi
     }
 
     /**
-     * Get mapper
+     * Get mapper.
      *
      * @return MapperInterface
      */
@@ -211,6 +218,6 @@ var_dump(\GuzzleHttp\json_decode($response->getBody()->getContents(), true));exi
     {
         $mapperClass = $this->getMapperClass();
 
-        return new $mapperClass;
+        return new $mapperClass();
     }
 }

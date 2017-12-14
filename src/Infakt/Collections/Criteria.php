@@ -1,4 +1,5 @@
 <?php
+
 declare(strict_types=1);
 
 namespace Infakt\Collections;
@@ -26,12 +27,12 @@ class Criteria
     private $sortClauses;
 
     /**
-     * Criteria constructor
+     * Criteria constructor.
      *
      * @param array $comparisons
      * @param array $sortClauses
-     * @param int $firstResult
-     * @param int $maxResults
+     * @param int   $firstResult
+     * @param int   $maxResults
      */
     public function __construct(array $comparisons = [], array $sortClauses = [], int $firstResult = 0, int $maxResults = 10)
     {
@@ -63,9 +64,10 @@ class Criteria
 
     /**
      * @param Comparison $comparison
+     *
      * @return $this
      */
-    public function addComparison(Comparison $comparison): Criteria
+    public function addComparison(Comparison $comparison): self
     {
         $this->comparisons[] = $comparison;
 
@@ -74,9 +76,10 @@ class Criteria
 
     /**
      * @param Comparison[] $comparisons
+     *
      * @return Criteria
      */
-    public function setComparisons(array $comparisons): Criteria
+    public function setComparisons(array $comparisons): self
     {
         $this->comparisons = $comparisons;
 
@@ -93,9 +96,10 @@ class Criteria
 
     /**
      * @param SortClause $sortClause
+     *
      * @return Criteria
      */
-    public function addSortClause(SortClause $sortClause): Criteria
+    public function addSortClause(SortClause $sortClause): self
     {
         $this->sortClauses[] = $sortClause;
 
@@ -104,9 +108,10 @@ class Criteria
 
     /**
      * @param SortClause[] $sortClauses
+     *
      * @return Criteria
      */
-    public function setSortClauses(array $sortClauses): Criteria
+    public function setSortClauses(array $sortClauses): self
     {
         $this->sortClauses = $sortClauses;
 

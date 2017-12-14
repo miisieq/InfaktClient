@@ -1,16 +1,17 @@
 <?php
+
 declare(strict_types=1);
 
 namespace Infakt\Collections;
 
 class Comparison
 {
-    const EQ        = 'eq';
-    const LT        = 'lt';
-    const LTE       = 'lteq';
-    const GT        = 'gt';
-    const GTE       = 'gteq';
-    const CONTAINS  = 'cont';
+    const EQ = 'eq';
+    const LT = 'lt';
+    const LTE = 'lteq';
+    const GT = 'gt';
+    const GTE = 'gteq';
+    const CONTAINS = 'cont';
 
     /**
      * @var string

@@ -1,4 +1,5 @@
 <?php
+
 declare(strict_types=1);
 
 namespace Infakt\Collections;
@@ -22,7 +23,7 @@ class SortClause
     protected $order;
 
     /**
-     * SortClause constructor
+     * SortClause constructor.
      *
      * @param string $field
      * @param string $order
@@ -35,6 +36,7 @@ class SortClause
 
     /**
      * @param $field
+     *
      * @return $this
      */
     public function setField($field)
@@ -54,7 +56,9 @@ class SortClause
 
     /**
      * @param $order
+     *
      * @throws LogicException
+     *
      * @return $this
      */
     public function setOrder($order)

@@ -1,13 +1,13 @@
 <?php
+
 declare(strict_types=1);
 
 namespace Infakt\Model;
 
 /**
- * This entity represents a vat rate
+ * This entity represents a vat rate.
  *
  * @link https://www.infakt.pl/developers/vat_rates.html#def
- * @package Infakt\Model
  */
 class VatRate implements EntityInterface
 {
@@ -41,9 +41,10 @@ class VatRate implements EntityInterface
 
     /**
      * @param int $id
+     *
      * @return VatRate
      */
-    public function setId(int $id): VatRate
+    public function setId(int $id): self
     {
         $this->id = $id;
 
@@ -60,11 +61,13 @@ class VatRate implements EntityInterface
 
     /**
      * @param float $rate
+     *
      * @return VatRate
      */
-    public function setRate(float $rate): VatRate
+    public function setRate(float $rate): self
     {
         $this->rate = $rate;
+
         return $this;
     }
 
@@ -78,9 +81,10 @@ class VatRate implements EntityInterface
 
     /**
      * @param string $name
+     *
      * @return VatRate
      */
-    public function setName(string $name): VatRate
+    public function setName(string $name): self
     {
         $this->name = $name;
 
@@ -97,9 +101,10 @@ class VatRate implements EntityInterface
 
     /**
      * @param string $symbol
+     *
      * @return VatRate
      */
-    public function setSymbol(string $symbol): VatRate
+    public function setSymbol(string $symbol): self
     {
         $this->symbol = $symbol;
 

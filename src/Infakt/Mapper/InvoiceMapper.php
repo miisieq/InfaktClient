@@ -1,4 +1,5 @@
 <?php
+
 declare(strict_types=1);
 
 namespace Infakt\Mapper;
@@ -8,9 +9,10 @@ use Infakt\Model\Invoice;
 class InvoiceMapper extends AbstractMapper
 {
     /**
-     * Map array to Invoice object
+     * Map array to Invoice object.
      *
      * @param $data
+     *
      * @return Invoice
      */
     public function map($data): Invoice
@@ -19,23 +21,22 @@ class InvoiceMapper extends AbstractMapper
 
         foreach ($data['services'] as $service) {
             $services[] = (new Invoice\Service())
-                ->setId((int)$service['id'])
+                ->setId((int) $service['id'])
                 ->setName($service['name'])
                 ->setTaxSymbol($service['tax_symbol'])
                 ->setUnit($service['unit'])
-                ->setQuantity((float)$service['quantity'])
+                ->setQuantity((float) $service['quantity'])
                 ->setUnitNetPrice($this->mapPrice($service['unit_net_price']))
                 ->setUnitNetPriceBeforeDiscount($this->mapPrice($service['unit_net_price_before_discount']))
                 ->setUnitNetPrice($this->mapPrice($service['net_price']))
                 ->setGrossPrice($this->mapPrice($service['gross_price']))
                 ->setTaxPrice($this->mapPrice($service['tax_price']))
                 ->setSymbol($service['symbol'])
-                ->setDiscount((float)$service['discount'])
-            ;
+                ->setDiscount((float) $service['discount']);
         }
 
         $invoice = (new Invoice())
-            ->setId((int)$data['id'])
+            ->setId((int) $data['id'])
             ->setNumber($data['number'])
             ->setInvoiceDate($this->mapDate($data['invoice_date']))
             ->setCurrency($data['currency'])
@@ -52,7 +53,7 @@ class InvoiceMapper extends AbstractMapper
             ->setNetPrice($this->mapPrice($data['net_price']))
             ->setTaxPrice($this->mapPrice($data['tax_price']))
             ->setGrossPrice($this->mapPrice($data['gross_price']))
-            ->setClientId($data['client_id'] ? (int)$data['client_id'] : null)
+            ->setClientId($data['client_id'] ? (int) $data['client_id'] : null)
             ->setClientCompanyName($data['client_company_name'])
             ->setClientStreet($data['client_street'])
             ->setClientCity($data['client_city'])
@@ -62,7 +63,7 @@ class InvoiceMapper extends AbstractMapper
             ->setBankAccount($data['bank_account'])
             ->setBankName($data['bank_name'])
             ->setSwift($data['swift'])
-            ->setVatExemptionReason($data['vat_exemption_reason'] ? : null)
+            ->setVatExemptionReason($data['vat_exemption_reason'] ?: null)
             ->setSaleDate($this->mapDate($data['sale_date']))
             ->setSaleType($data['sale_type'])
             ->setInvoiceDateKind($data['invoice_date_kind'])
@@ -82,10 +83,11 @@ class InvoiceMapper extends AbstractMapper
 
     /**
      * @param int|string $price
+     *
      * @return float|null
      */
     protected function mapPrice($price) :?float
     {
-        return is_null($price) ? null : (float)($price / 100);
+        return is_null($price) ? null : (float) ($price / 100);
     }
 }
