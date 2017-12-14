@@ -54,8 +54,6 @@ abstract class AbstractObjectRepository implements ObjectRepositoryInterface
     public function get(int $entityId)
     {
         $response = $this->infakt->get($this->getServiceName().'/'.$entityId.'.json');
-        var_dump(\GuzzleHttp\json_decode($response->getBody()->getContents(), true));
-        exit;
 
         return $this->getMapper()->map(\GuzzleHttp\json_decode($response->getBody()->getContents(), true));
     }
