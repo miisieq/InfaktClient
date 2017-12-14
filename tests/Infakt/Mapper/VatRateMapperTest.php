@@ -1,4 +1,5 @@
 <?php
+
 declare(strict_types=1);
 
 namespace Infakt\Tests\Mapper;
@@ -17,7 +18,7 @@ class VatRateMapperTest extends TestCase
     /**
      * @dataProvider dataProvider
      *
-     * @param array $data
+     * @param array   $data
      * @param VatRate $expected
      */
     public function testMap(array $data, VatRate $expected)
@@ -35,22 +36,22 @@ class VatRateMapperTest extends TestCase
         return [
             [
                 [
-                    'id' => 7,
-                    'rate' => '23.0',
-                    'name' => '23%',
+                    'id'     => 7,
+                    'rate'   => '23.0',
+                    'name'   => '23%',
                     'symbol' => '23',
                 ],
                 (new VatRate())
                     ->setId(7)
                     ->setRate(23.0)
                     ->setName('23%')
-                    ->setSymbol('23')
+                    ->setSymbol('23'),
             ],
             [
                 [
-                    'id' => 37,
-                    'rate' => '0.0',
-                    'name' => 'o.o.',
+                    'id'     => 37,
+                    'rate'   => '0.0',
+                    'name'   => 'o.o.',
                     'symbol' => 'oo',
 
                 ],
@@ -58,8 +59,8 @@ class VatRateMapperTest extends TestCase
                     ->setId(37)
                     ->setRate(0)
                     ->setName('o.o.')
-                    ->setSymbol('oo')
-            ]
+                    ->setSymbol('oo'),
+            ],
         ];
     }
 

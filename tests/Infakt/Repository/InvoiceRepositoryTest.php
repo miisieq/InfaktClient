@@ -1,4 +1,5 @@
 <?php
+
 declare(strict_types=1);
 
 namespace Infakt\Tests\Mapper;
@@ -6,9 +7,7 @@ namespace Infakt\Tests\Mapper;
 use Infakt\Collections\Comparison;
 use Infakt\Collections\Criteria;
 use Infakt\Collections\SortClause;
-use Infakt\Exception\LogicException;
 use Infakt\Infakt;
-use Infakt\Model\BankAccount;
 use Infakt\Repository\InvoiceRepository;
 use Infakt\Tests\Client\TestClient;
 use PHPUnit\Framework\TestCase;
@@ -57,7 +56,7 @@ class InvoiceRepositoryTest extends TestCase
      * @dataProvider criteriaProvider
      *
      * @param Criteria $criteria
-     * @param string $expected
+     * @param string   $expected
      */
     public function testBuildQueryParameters(Criteria $criteria, string $expected)
     {
@@ -80,7 +79,7 @@ class InvoiceRepositoryTest extends TestCase
         return [
             [
                 new Criteria([], [], 3, 25),
-                'offset=3&limit=25'
+                'offset=3&limit=25',
             ],
             [
                 new Criteria(
@@ -91,7 +90,7 @@ class InvoiceRepositoryTest extends TestCase
                     3,
                     25
                 ),
-                'q[name_eq]=php&offset=3&limit=25'
+                'q[name_eq]=php&offset=3&limit=25',
             ],
             [
                 new Criteria(
@@ -103,7 +102,7 @@ class InvoiceRepositoryTest extends TestCase
                     3,
                     25
                 ),
-                'q[name_eq]=php&q[unit_net_price_gt]=30.75&offset=3&limit=25'
+                'q[name_eq]=php&q[unit_net_price_gt]=30.75&offset=3&limit=25',
             ],
             [
                 new Criteria(
@@ -112,18 +111,19 @@ class InvoiceRepositoryTest extends TestCase
                         new Comparison('unit_net_price', Comparison::GT, 30.75),
                     ],
                     [
-                        new SortClause('name', SortClause::ORDER_DESC)
+                        new SortClause('name', SortClause::ORDER_DESC),
                     ],
                     3,
                     25
                 ),
-                'q[name_eq]=php&q[unit_net_price_gt]=30.75&order=name desc&offset=3&limit=25'
-            ]
+                'q[name_eq]=php&q[unit_net_price_gt]=30.75&order=name desc&offset=3&limit=25',
+            ],
         ];
     }
 
     /**
      * @param $name
+     *
      * @return \ReflectionMethod
      */
     protected function getPrivateMethod($name)

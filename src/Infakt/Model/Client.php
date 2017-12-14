@@ -1,153 +1,153 @@
 <?php
+
 declare(strict_types=1);
 
 namespace Infakt\Model;
 
 /**
- * This entity represents a client
+ * This entity represents a client.
  *
  * @link https://www.infakt.pl/developers/clients.html#def
- * @package Infakt\Model
  */
 class Client implements EntityInterface
 {
-
     /**
-     * ID
+     * ID.
      *
      * @var int
      */
     protected $id;
 
     /**
-     * Company name
+     * Company name.
      *
      * @var string
      */
     protected $companyName;
 
     /**
-     * Street
+     * Street.
      *
      * @var string
      */
     protected $street;
 
     /**
-     * City
+     * City.
      *
      * @var string
      */
     protected $city;
 
     /**
-     * Country code
+     * Country code.
+     *
      * @see https://www.infakt.pl/developers/countries.html#list
      *
      * @var string
      */
     protected $country;
 
-
     /**
-     * Postal code in format 'XX-XXX'
+     * Postal code in format 'XX-XXX'.
      *
      * @var string
      */
     protected $postalCode;
 
     /**
-     * NIP
+     * NIP.
      *
      * @var string
      */
     protected $nip;
 
     /**
-     * Phone number
+     * Phone number.
      *
      * @var string
      */
     protected $phoneNumber;
 
     /**
-     * Mailing address same as the default address
+     * Mailing address same as the default address.
      *
-     * @var boolean
+     * @var bool
      */
     protected $sameForwardAddress;
 
     /**
-     * Website URL
+     * Website URL.
      *
      * @var string
      */
     protected $website;
 
     /**
-     * Email address
+     * Email address.
      *
      * @var string
      */
     protected $email;
 
     /**
-     * Note
+     * Note.
      *
      * @var string
      */
     protected $note;
 
     /**
-     * Document receiver
+     * Document receiver.
      *
      * @var string
      */
     protected $receiver;
 
     /**
-     * Mailing company name
+     * Mailing company name.
      *
      * @var string
      */
     protected $mailingCompanyName;
 
     /**
-     * Mailing street
+     * Mailing street.
      *
      * @var string
      */
     protected $mailingStreet;
 
     /**
-     * Mailing city
+     * Mailing city.
      *
      * @var string
      */
     protected $mailingCity;
 
     /**
-     * Mailing postal code in format 'XX-XXX'
+     * Mailing postal code in format 'XX-XXX'.
+     *
      * @var string
      */
     protected $mailingPostalCode;
 
     /**
-     * The default paying term in days
+     * The default paying term in days.
      *
-     * @var integer
+     * @var int
      */
     protected $daysToPayment;
 
     /**
-     * Default note
+     * Default note.
      *
      * @var string
      */
     protected $invoiceNote;
 
     /**
-     * Payment method identifier
+     * Payment method identifier.
      *
      * @var string
      */
@@ -163,9 +163,10 @@ class Client implements EntityInterface
 
     /**
      * @param int $id
+     *
      * @return Client
      */
-    public function setId(int $id): Client
+    public function setId(int $id): self
     {
         $this->id = $id;
 
@@ -182,11 +183,13 @@ class Client implements EntityInterface
 
     /**
      * @param string $companyName
+     *
      * @return Client
      */
-    public function setCompanyName(string $companyName): Client
+    public function setCompanyName(string $companyName): self
     {
         $this->companyName = $companyName;
+
         return $this;
     }
 
@@ -200,11 +203,13 @@ class Client implements EntityInterface
 
     /**
      * @param string $street
+     *
      * @return Client
      */
-    public function setStreet(string $street): Client
+    public function setStreet(string $street): self
     {
         $this->street = $street;
+
         return $this;
     }
 
@@ -218,11 +223,13 @@ class Client implements EntityInterface
 
     /**
      * @param string $city
+     *
      * @return Client
      */
-    public function setCity(string $city): Client
+    public function setCity(string $city): self
     {
         $this->city = $city;
+
         return $this;
     }
 
@@ -236,11 +243,13 @@ class Client implements EntityInterface
 
     /**
      * @param string $country
+     *
      * @return Client
      */
-    public function setCountry(string $country): Client
+    public function setCountry(string $country): self
     {
         $this->country = $country;
+
         return $this;
     }
 
@@ -254,11 +263,13 @@ class Client implements EntityInterface
 
     /**
      * @param string $postalCode
+     *
      * @return Client
      */
-    public function setPostalCode(string $postalCode): Client
+    public function setPostalCode(string $postalCode): self
     {
         $this->postalCode = $postalCode;
+
         return $this;
     }
 
@@ -272,11 +283,13 @@ class Client implements EntityInterface
 
     /**
      * @param string $nip
+     *
      * @return Client
      */
-    public function setNip(string $nip): Client
+    public function setNip(string $nip): self
     {
         $this->nip = $nip;
+
         return $this;
     }
 
@@ -290,11 +303,13 @@ class Client implements EntityInterface
 
     /**
      * @param string $phoneNumber
+     *
      * @return Client
      */
-    public function setPhoneNumber(string $phoneNumber): Client
+    public function setPhoneNumber(string $phoneNumber): self
     {
         $this->phoneNumber = $phoneNumber;
+
         return $this;
     }
 
@@ -308,11 +323,13 @@ class Client implements EntityInterface
 
     /**
      * @param bool $sameForwardAddress
+     *
      * @return Client
      */
-    public function setSameForwardAddress(bool $sameForwardAddress): Client
+    public function setSameForwardAddress(bool $sameForwardAddress): self
     {
         $this->sameForwardAddress = $sameForwardAddress;
+
         return $this;
     }
 
@@ -326,11 +343,13 @@ class Client implements EntityInterface
 
     /**
      * @param string $website
+     *
      * @return Client
      */
-    public function setWebsite(string $website): Client
+    public function setWebsite(string $website): self
     {
         $this->website = $website;
+
         return $this;
     }
 
@@ -344,11 +363,13 @@ class Client implements EntityInterface
 
     /**
      * @param string $email
+     *
      * @return Client
      */
-    public function setEmail(string $email): Client
+    public function setEmail(string $email): self
     {
         $this->email = $email;
+
         return $this;
     }
 
@@ -362,11 +383,13 @@ class Client implements EntityInterface
 
     /**
      * @param string $note
+     *
      * @return Client
      */
-    public function setNote(string $note): Client
+    public function setNote(string $note): self
     {
         $this->note = $note;
+
         return $this;
     }
 
@@ -380,11 +403,13 @@ class Client implements EntityInterface
 
     /**
      * @param string $receiver
+     *
      * @return Client
      */
-    public function setReceiver(string $receiver): Client
+    public function setReceiver(string $receiver): self
     {
         $this->receiver = $receiver;
+
         return $this;
     }
 
@@ -398,11 +423,13 @@ class Client implements EntityInterface
 
     /**
      * @param string $mailingCompanyName
+     *
      * @return Client
      */
-    public function setMailingCompanyName(string $mailingCompanyName): Client
+    public function setMailingCompanyName(string $mailingCompanyName): self
     {
         $this->mailingCompanyName = $mailingCompanyName;
+
         return $this;
     }
 
@@ -416,11 +443,13 @@ class Client implements EntityInterface
 
     /**
      * @param string $mailingStreet
+     *
      * @return Client
      */
-    public function setMailingStreet(string $mailingStreet): Client
+    public function setMailingStreet(string $mailingStreet): self
     {
         $this->mailingStreet = $mailingStreet;
+
         return $this;
     }
 
@@ -434,11 +463,13 @@ class Client implements EntityInterface
 
     /**
      * @param string $mailingCity
+     *
      * @return Client
      */
-    public function setMailingCity(string $mailingCity): Client
+    public function setMailingCity(string $mailingCity): self
     {
         $this->mailingCity = $mailingCity;
+
         return $this;
     }
 
@@ -452,11 +483,13 @@ class Client implements EntityInterface
 
     /**
      * @param string $mailingPostalCode
+     *
      * @return Client
      */
-    public function setMailingPostalCode(string $mailingPostalCode): Client
+    public function setMailingPostalCode(string $mailingPostalCode): self
     {
         $this->mailingPostalCode = $mailingPostalCode;
+
         return $this;
     }
 
@@ -470,12 +503,13 @@ class Client implements EntityInterface
 
     /**
      * @param int|null $daysToPayment
+     *
      * @return Client
      */
-    public function setDaysToPayment(?int $daysToPayment): Client
+    public function setDaysToPayment(?int $daysToPayment): self
     {
         $this->daysToPayment = $daysToPayment;
-        
+
         return $this;
     }
 
@@ -489,11 +523,13 @@ class Client implements EntityInterface
 
     /**
      * @param string $invoiceNote
+     *
      * @return Client
      */
-    public function setInvoiceNote(string $invoiceNote): Client
+    public function setInvoiceNote(string $invoiceNote): self
     {
         $this->invoiceNote = $invoiceNote;
+
         return $this;
     }
 
@@ -507,11 +543,13 @@ class Client implements EntityInterface
 
     /**
      * @param string $paymentMethod
+     *
      * @return Client
      */
-    public function setPaymentMethod(string $paymentMethod): Client
+    public function setPaymentMethod(string $paymentMethod): self
     {
         $this->paymentMethod = $paymentMethod;
+
         return $this;
     }
 }

@@ -1,4 +1,5 @@
 <?php
+
 declare(strict_types=1);
 
 namespace Infakt\Model\Invoice;
@@ -6,10 +7,9 @@ namespace Infakt\Model\Invoice;
 use Infakt\Model\EntityInterface;
 
 /**
- * This entity represents an invoice service
+ * This entity represents an invoice service.
  *
  * @link https://www.infakt.pl/developers/invoices.html#services_def
- * @package Infakt\Model\Invoice
  */
 class Service implements EntityInterface
 {
@@ -83,11 +83,13 @@ class Service implements EntityInterface
 
     /**
      * @param int $id
+     *
      * @return Service
      */
-    public function setId(int $id): Service
+    public function setId(int $id): self
     {
         $this->id = $id;
+
         return $this;
     }
 
@@ -101,11 +103,13 @@ class Service implements EntityInterface
 
     /**
      * @param string $name
+     *
      * @return Service
      */
-    public function setName(string $name): Service
+    public function setName(string $name): self
     {
         $this->name = $name;
+
         return $this;
     }
 
@@ -119,11 +123,13 @@ class Service implements EntityInterface
 
     /**
      * @param string $taxSymbol
+     *
      * @return Service
      */
-    public function setTaxSymbol(string $taxSymbol): Service
+    public function setTaxSymbol(string $taxSymbol): self
     {
         $this->taxSymbol = $taxSymbol;
+
         return $this;
     }
 
@@ -137,11 +143,13 @@ class Service implements EntityInterface
 
     /**
      * @param string $unit
+     *
      * @return Service
      */
-    public function setUnit(string $unit): Service
+    public function setUnit(string $unit): self
     {
         $this->unit = $unit;
+
         return $this;
     }
 
@@ -155,11 +163,13 @@ class Service implements EntityInterface
 
     /**
      * @param float $quantity
+     *
      * @return Service
      */
-    public function setQuantity(float $quantity): Service
+    public function setQuantity(float $quantity): self
     {
         $this->quantity = $quantity;
+
         return $this;
     }
 
@@ -173,11 +183,13 @@ class Service implements EntityInterface
 
     /**
      * @param float $unitNetPrice
+     *
      * @return Service
      */
-    public function setUnitNetPrice(float $unitNetPrice): Service
+    public function setUnitNetPrice(float $unitNetPrice): self
     {
         $this->unitNetPrice = $unitNetPrice;
+
         return $this;
     }
 
@@ -191,11 +203,13 @@ class Service implements EntityInterface
 
     /**
      * @param float $unitNetPriceBeforeDiscount
+     *
      * @return Service
      */
-    public function setUnitNetPriceBeforeDiscount(float $unitNetPriceBeforeDiscount): Service
+    public function setUnitNetPriceBeforeDiscount(float $unitNetPriceBeforeDiscount): self
     {
         $this->unitNetPriceBeforeDiscount = $unitNetPriceBeforeDiscount;
+
         return $this;
     }
 
@@ -209,11 +223,13 @@ class Service implements EntityInterface
 
     /**
      * @param float $netPrice
+     *
      * @return Service
      */
-    public function setNetPrice(float $netPrice): Service
+    public function setNetPrice(float $netPrice): self
     {
         $this->netPrice = $netPrice;
+
         return $this;
     }
 
@@ -227,11 +243,13 @@ class Service implements EntityInterface
 
     /**
      * @param float $grossPrice
+     *
      * @return Service
      */
-    public function setGrossPrice(float $grossPrice): Service
+    public function setGrossPrice(float $grossPrice): self
     {
         $this->grossPrice = $grossPrice;
+
         return $this;
     }
 
@@ -245,11 +263,13 @@ class Service implements EntityInterface
 
     /**
      * @param float $taxPrice
+     *
      * @return Service
      */
-    public function setTaxPrice(float $taxPrice): Service
+    public function setTaxPrice(float $taxPrice): self
     {
         $this->taxPrice = $taxPrice;
+
         return $this;
     }
 
@@ -263,6 +283,7 @@ class Service implements EntityInterface
 
     /**
      * @param null|string $symbol
+     *
      * @return Service
      */
     public function setSymbol(?string $symbol)
@@ -282,12 +303,13 @@ class Service implements EntityInterface
 
     /**
      * @param float $discount
+     *
      * @return Service
      */
-    public function setDiscount(float $discount): Service
+    public function setDiscount(float $discount): self
     {
         $this->discount = $discount;
+
         return $this;
     }
-
 }

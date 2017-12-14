@@ -1,9 +1,11 @@
 <?php
+
 declare(strict_types=1);
 
 namespace Infakt\Model\Invoice;
 
-use Infakt\Model\Invoice\Extension\{Payment, Share};
+use Infakt\Model\Invoice\Extension\Payment;
+use Infakt\Model\Invoice\Extension\Share;
 
 class Extension
 {
@@ -27,11 +29,13 @@ class Extension
 
     /**
      * @param Payment $payment
+     *
      * @return Extension
      */
-    public function setPayment(Payment $payment): Extension
+    public function setPayment(Payment $payment): self
     {
         $this->payment = $payment;
+
         return $this;
     }
 
@@ -45,11 +49,13 @@ class Extension
 
     /**
      * @param Share $share
+     *
      * @return Extension
      */
-    public function setShare(Share $share): Extension
+    public function setShare(Share $share): self
     {
         $this->share = $share;
+
         return $this;
     }
 }

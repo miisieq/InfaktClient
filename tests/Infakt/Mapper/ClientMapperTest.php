@@ -1,4 +1,5 @@
 <?php
+
 declare(strict_types=1);
 
 namespace Infakt\Tests\Mapper;
@@ -17,7 +18,7 @@ class ClientMapperTest extends TestCase
     /**
      * @dataProvider dataProvider
      *
-     * @param array $data
+     * @param array  $data
      * @param Client $expected
      */
     public function testMap(array $data, Client $expected)
@@ -51,26 +52,26 @@ class ClientMapperTest extends TestCase
         return [
             [
                 [
-                    'id' => 6056166,
-                    'company_name' => 'Firma Testowa sp. z o.o.',
-                    'street' => 'ul. Mickiewicza 1',
-                    'city' => 'Gdańsk',
-                    'country' => 'PL',
-                    'postal_code' => '80-425',
-                    'nip' => '9999999999',
-                    'phone_number' => '+48140633900',
+                    'id'                   => 6056166,
+                    'company_name'         => 'Firma Testowa sp. z o.o.',
+                    'street'               => 'ul. Mickiewicza 1',
+                    'city'                 => 'Gdańsk',
+                    'country'              => 'PL',
+                    'postal_code'          => '80-425',
+                    'nip'                  => '9999999999',
+                    'phone_number'         => '+48140633900',
                     'same_forward_address' => false,
-                    'web_site' => 'http://example.com/',
-                    'email' => 'example@example.com',
-                    'note' =>  'Powiadomić telefonicznie o wystawieniu faktury.',
-                    'receiver' => 'Jan Nowak',
+                    'web_site'             => 'http://example.com/',
+                    'email'                => 'example@example.com',
+                    'note'                 => 'Powiadomić telefonicznie o wystawieniu faktury.',
+                    'receiver'             => 'Jan Nowak',
                     'mailing_company_name' => 'Firma Testowa sp. z o.o. oddział w Łowiczu',
-                    'mailing_street' => 'ul. Polna 1',
-                    'mailing_city' => 'Warszawa',
-                    'mailing_postal_code' => '00-622',
-                    'days_to_payment' => 7,
-                    'invoice_note' => 'powód zwolnienia z VAT: na podstawie art. 113 ust. 1 ustawy o VAT',
-                    'payment_method' => 'transfer',
+                    'mailing_street'       => 'ul. Polna 1',
+                    'mailing_city'         => 'Warszawa',
+                    'mailing_postal_code'  => '00-622',
+                    'days_to_payment'      => 7,
+                    'invoice_note'         => 'powód zwolnienia z VAT: na podstawie art. 113 ust. 1 ustawy o VAT',
+                    'payment_method'       => 'transfer',
                 ],
                 (new Client())
                     ->setId(6056166)
@@ -92,7 +93,7 @@ class ClientMapperTest extends TestCase
                     ->setMailingPostalCode('00-622')
                     ->setDaysToPayment(7)
                     ->setInvoiceNote('powód zwolnienia z VAT: na podstawie art. 113 ust. 1 ustawy o VAT')
-                    ->setPaymentMethod('transfer')
+                    ->setPaymentMethod('transfer'),
             ],
         ];
     }

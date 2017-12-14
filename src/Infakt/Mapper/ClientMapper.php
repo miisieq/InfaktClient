@@ -1,4 +1,5 @@
 <?php
+
 declare(strict_types=1);
 
 namespace Infakt\Mapper;
@@ -11,12 +12,13 @@ class ClientMapper extends AbstractMapper
      * {@inheritdoc}
      *
      * @param $data
+     *
      * @return Client
      */
     public function map($data)
     {
         return (new Client())
-            ->setId((int)$data['id'])
+            ->setId((int) $data['id'])
             ->setCompanyName($data['company_name'])
             ->setStreet($data['street'])
             ->setCity($data['city'])
@@ -32,10 +34,9 @@ class ClientMapper extends AbstractMapper
             ->setMailingStreet($data['mailing_street'])
             ->setMailingCity($data['mailing_city'])
             ->setMailingPostalCode($data['mailing_postal_code'])
-            ->setDaysToPayment($data['days_to_payment'] ? : null)
+            ->setDaysToPayment($data['days_to_payment'] ?: null)
             ->setPaymentMethod($data['payment_method'])
             ->setInvoiceNote($data['invoice_note'])
-            ->setSameForwardAddress((bool)$data['same_forward_address'])
-        ;
+            ->setSameForwardAddress((bool) $data['same_forward_address']);
     }
 }
