@@ -24,10 +24,11 @@ class Infakt
     protected $apiKey;
 
     /**
-     * Client constructor
+     * Client constructor.
      *
      * @param ClientInterface|null $client
-     * @param array $config
+     * @param array                $config
+     *
      * @throws ConfigurationException
      */
     public function __construct(ClientInterface $client = null, array $config = [])
@@ -42,12 +43,14 @@ class Infakt
 
     /**
      * @param $className
-     * @return AbstractObjectRepository
+     *
      * @throws ConfigurationException
+     *
+     * @return AbstractObjectRepository
      */
     public function getRepository($className)
     {
-        $className  = 'Infakt\\Repository\\' . substr($className, strrpos($className, '\\') + 1) . 'Repository';
+        $className = 'Infakt\\Repository\\'.substr($className, strrpos($className, '\\') + 1).'Repository';
 
         if (!class_exists($className)) {
             throw new ConfigurationException("There is no repository to work with class $className.");
@@ -65,8 +68,8 @@ class Infakt
     {
         $options = [
             'headers' => [
-                'Content-Type' => 'application/json'
-            ]
+                'Content-Type' => 'application/json',
+            ],
         ];
 
         if ($body) {
@@ -78,7 +81,7 @@ class Infakt
 
     public function buildQuery($query)
     {
-        return self::API_ENDPOINT . '/' . self::API_VERSION . '/' . $query;
+        return self::API_ENDPOINT.'/'.self::API_VERSION.'/'.$query;
     }
 
     /**
@@ -87,7 +90,7 @@ class Infakt
     protected function getAuthorizationHeader()
     {
         return [
-            'X-inFakt-ApiKey' => $this->apiKey
+            'X-inFakt-ApiKey' => $this->apiKey,
         ];
     }
 }

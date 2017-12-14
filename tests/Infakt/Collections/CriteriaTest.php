@@ -1,4 +1,5 @@
 <?php
+
 declare(strict_types=1);
 
 namespace Infakt\Tests\Mapper;
@@ -88,11 +89,11 @@ class CriteriaTest extends TestCase
     protected function setUp()
     {
         $this->comparisons = [
-            new Comparison('name', Comparison::EQ, 'php')
+            new Comparison('name', Comparison::EQ, 'php'),
         ];
 
         $this->sortClauses = [
-            new SortClause('name', SortClause::ORDER_DESC)
+            new SortClause('name', SortClause::ORDER_DESC),
         ];
 
         $this->firstResult = 10;

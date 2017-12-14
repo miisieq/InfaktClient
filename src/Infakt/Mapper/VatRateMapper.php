@@ -1,4 +1,5 @@
 <?php
+
 declare(strict_types=1);
 
 namespace Infakt\Mapper;
@@ -11,15 +12,15 @@ class VatRateMapper extends AbstractMapper
      * {@inheritdoc}
      *
      * @param $data
+     *
      * @return VatRate
      */
     public function map($data)
     {
         return (new VatRate())
-            ->setId((int)$data['id'])
-            ->setRate((float)$data['rate'])
+            ->setId((int) $data['id'])
+            ->setRate((float) $data['rate'])
             ->setName($data['name'])
-            ->setSymbol($data['symbol'])
-        ;
+            ->setSymbol($data['symbol']);
     }
 }

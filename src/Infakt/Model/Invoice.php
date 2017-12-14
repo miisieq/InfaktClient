@@ -1,4 +1,5 @@
 <?php
+
 declare(strict_types=1);
 
 namespace Infakt\Model;
@@ -7,10 +8,9 @@ use Infakt\Model\Invoice\Extension;
 use Infakt\Model\Invoice\Service;
 
 /**
- * This entity represents an invoice
+ * This entity represents an invoice.
  *
  * @link https://www.infakt.pl/developers/invoices.html#def
- * @package Infakt\Model
  */
 class Invoice implements EntityInterface
 {
@@ -183,11 +183,13 @@ class Invoice implements EntityInterface
 
     /**
      * @param int $id
+     *
      * @return Invoice
      */
-    public function setId(int $id): Invoice
+    public function setId(int $id): self
     {
         $this->id = $id;
+
         return $this;
     }
 
@@ -201,11 +203,13 @@ class Invoice implements EntityInterface
 
     /**
      * @param string $number
+     *
      * @return Invoice
      */
-    public function setNumber(string $number): Invoice
+    public function setNumber(string $number): self
     {
         $this->number = $number;
+
         return $this;
     }
 
@@ -219,11 +223,13 @@ class Invoice implements EntityInterface
 
     /**
      * @param string $currency
+     *
      * @return Invoice
      */
-    public function setCurrency(string $currency): Invoice
+    public function setCurrency(string $currency): self
     {
         $this->currency = $currency;
+
         return $this;
     }
 
@@ -237,11 +243,13 @@ class Invoice implements EntityInterface
 
     /**
      * @param float $paidPrice
+     *
      * @return Invoice
      */
-    public function setPaidPrice(float $paidPrice): Invoice
+    public function setPaidPrice(float $paidPrice): self
     {
         $this->paidPrice = $paidPrice;
+
         return $this;
     }
 
@@ -255,11 +263,13 @@ class Invoice implements EntityInterface
 
     /**
      * @param \DateTime|null $paidDate
+     *
      * @return Invoice
      */
-    public function setPaidDate(?\DateTime $paidDate): Invoice
+    public function setPaidDate(?\DateTime $paidDate): self
     {
         $this->paidDate = $paidDate;
+
         return $this;
     }
 
@@ -273,11 +283,13 @@ class Invoice implements EntityInterface
 
     /**
      * @param string $notes
+     *
      * @return Invoice
      */
-    public function setNotes(string $notes): Invoice
+    public function setNotes(string $notes): self
     {
         $this->notes = $notes;
+
         return $this;
     }
 
@@ -291,11 +303,13 @@ class Invoice implements EntityInterface
 
     /**
      * @param string $kind
+     *
      * @return Invoice
      */
-    public function setKind(string $kind): Invoice
+    public function setKind(string $kind): self
     {
         $this->kind = $kind;
+
         return $this;
     }
 
@@ -309,11 +323,13 @@ class Invoice implements EntityInterface
 
     /**
      * @param string $paymentMethod
+     *
      * @return Invoice
      */
-    public function setPaymentMethod(string $paymentMethod): Invoice
+    public function setPaymentMethod(string $paymentMethod): self
     {
         $this->paymentMethod = $paymentMethod;
+
         return $this;
     }
 
@@ -327,11 +343,13 @@ class Invoice implements EntityInterface
 
     /**
      * @param string $recipientSignature
+     *
      * @return Invoice
      */
-    public function setRecipientSignature(string $recipientSignature): Invoice
+    public function setRecipientSignature(string $recipientSignature): self
     {
         $this->recipientSignature = $recipientSignature;
+
         return $this;
     }
 
@@ -345,11 +363,13 @@ class Invoice implements EntityInterface
 
     /**
      * @param string $sellerSignature
+     *
      * @return Invoice
      */
-    public function setSellerSignature(string $sellerSignature): Invoice
+    public function setSellerSignature(string $sellerSignature): self
     {
         $this->sellerSignature = $sellerSignature;
+
         return $this;
     }
 
@@ -363,11 +383,13 @@ class Invoice implements EntityInterface
 
     /**
      * @param \DateTime $invoiceDate
+     *
      * @return Invoice
      */
-    public function setInvoiceDate(\DateTime $invoiceDate): Invoice
+    public function setInvoiceDate(\DateTime $invoiceDate): self
     {
         $this->invoiceDate = $invoiceDate;
+
         return $this;
     }
 
@@ -381,11 +403,13 @@ class Invoice implements EntityInterface
 
     /**
      * @param \DateTime $saleDate
+     *
      * @return Invoice
      */
-    public function setSaleDate(\DateTime $saleDate): Invoice
+    public function setSaleDate(\DateTime $saleDate): self
     {
         $this->saleDate = $saleDate;
+
         return $this;
     }
 
@@ -399,11 +423,13 @@ class Invoice implements EntityInterface
 
     /**
      * @param string $status
+     *
      * @return Invoice
      */
-    public function setStatus(string $status): Invoice
+    public function setStatus(string $status): self
     {
         $this->status = $status;
+
         return $this;
     }
 
@@ -417,11 +443,13 @@ class Invoice implements EntityInterface
 
     /**
      * @param \DateTime $paymentDate
+     *
      * @return Invoice
      */
-    public function setPaymentDate(\DateTime $paymentDate): Invoice
+    public function setPaymentDate(\DateTime $paymentDate): self
     {
         $this->paymentDate = $paymentDate;
+
         return $this;
     }
 
@@ -435,11 +463,13 @@ class Invoice implements EntityInterface
 
     /**
      * @param float $netPrice
+     *
      * @return Invoice
      */
-    public function setNetPrice(float $netPrice): Invoice
+    public function setNetPrice(float $netPrice): self
     {
         $this->netPrice = $netPrice;
+
         return $this;
     }
 
@@ -453,11 +483,13 @@ class Invoice implements EntityInterface
 
     /**
      * @param float $taxPrice
+     *
      * @return Invoice
      */
-    public function setTaxPrice(float $taxPrice): Invoice
+    public function setTaxPrice(float $taxPrice): self
     {
         $this->taxPrice = $taxPrice;
+
         return $this;
     }
 
@@ -471,11 +503,13 @@ class Invoice implements EntityInterface
 
     /**
      * @param float $grossPrice
+     *
      * @return Invoice
      */
-    public function setGrossPrice(float $grossPrice): Invoice
+    public function setGrossPrice(float $grossPrice): self
     {
         $this->grossPrice = $grossPrice;
+
         return $this;
     }
 
@@ -489,11 +523,13 @@ class Invoice implements EntityInterface
 
     /**
      * @param int $clientId
+     *
      * @return Invoice
      */
-    public function setClientId(int $clientId): Invoice
+    public function setClientId(int $clientId): self
     {
         $this->clientId = $clientId;
+
         return $this;
     }
 
@@ -507,11 +543,13 @@ class Invoice implements EntityInterface
 
     /**
      * @param string $clientCompanyName
+     *
      * @return Invoice
      */
-    public function setClientCompanyName(string $clientCompanyName): Invoice
+    public function setClientCompanyName(string $clientCompanyName): self
     {
         $this->clientCompanyName = $clientCompanyName;
+
         return $this;
     }
 
@@ -525,11 +563,13 @@ class Invoice implements EntityInterface
 
     /**
      * @param string $clientStreet
+     *
      * @return Invoice
      */
-    public function setClientStreet(string $clientStreet): Invoice
+    public function setClientStreet(string $clientStreet): self
     {
         $this->clientStreet = $clientStreet;
+
         return $this;
     }
 
@@ -543,11 +583,13 @@ class Invoice implements EntityInterface
 
     /**
      * @param string $clientCity
+     *
      * @return Invoice
      */
-    public function setClientCity(string $clientCity): Invoice
+    public function setClientCity(string $clientCity): self
     {
         $this->clientCity = $clientCity;
+
         return $this;
     }
 
@@ -561,11 +603,13 @@ class Invoice implements EntityInterface
 
     /**
      * @param string $clientPostCode
+     *
      * @return Invoice
      */
-    public function setClientPostCode(string $clientPostCode): Invoice
+    public function setClientPostCode(string $clientPostCode): self
     {
         $this->clientPostCode = $clientPostCode;
+
         return $this;
     }
 
@@ -579,11 +623,13 @@ class Invoice implements EntityInterface
 
     /**
      * @param string $clientTaxCode
+     *
      * @return Invoice
      */
-    public function setClientTaxCode(string $clientTaxCode): Invoice
+    public function setClientTaxCode(string $clientTaxCode): self
     {
         $this->clientTaxCode = $clientTaxCode;
+
         return $this;
     }
 
@@ -597,11 +643,13 @@ class Invoice implements EntityInterface
 
     /**
      * @param string $clientCountry
+     *
      * @return Invoice
      */
-    public function setClientCountry(string $clientCountry): Invoice
+    public function setClientCountry(string $clientCountry): self
     {
         $this->clientCountry = $clientCountry;
+
         return $this;
     }
 
@@ -615,11 +663,13 @@ class Invoice implements EntityInterface
 
     /**
      * @param string $bankName
+     *
      * @return Invoice
      */
-    public function setBankName(string $bankName): Invoice
+    public function setBankName(string $bankName): self
     {
         $this->bankName = $bankName;
+
         return $this;
     }
 
@@ -633,11 +683,13 @@ class Invoice implements EntityInterface
 
     /**
      * @param string $bankAccount
+     *
      * @return Invoice
      */
-    public function setBankAccount(string $bankAccount): Invoice
+    public function setBankAccount(string $bankAccount): self
     {
         $this->bankAccount = $bankAccount;
+
         return $this;
     }
 
@@ -651,11 +703,13 @@ class Invoice implements EntityInterface
 
     /**
      * @param string $swift
+     *
      * @return Invoice
      */
-    public function setSwift(string $swift): Invoice
+    public function setSwift(string $swift): self
     {
         $this->swift = $swift;
+
         return $this;
     }
 
@@ -669,11 +723,13 @@ class Invoice implements EntityInterface
 
     /**
      * @param string $saleType
+     *
      * @return Invoice
      */
-    public function setSaleType(string $saleType): Invoice
+    public function setSaleType(string $saleType): self
     {
         $this->saleType = $saleType;
+
         return $this;
     }
 
@@ -687,11 +743,13 @@ class Invoice implements EntityInterface
 
     /**
      * @param string $invoiceDateKind
+     *
      * @return Invoice
      */
-    public function setInvoiceDateKind(string $invoiceDateKind): Invoice
+    public function setInvoiceDateKind(string $invoiceDateKind): self
     {
         $this->invoiceDateKind = $invoiceDateKind;
+
         return $this;
     }
 
@@ -705,11 +763,13 @@ class Invoice implements EntityInterface
 
     /**
      * @param Service[] $services
+     *
      * @return Invoice
      */
-    public function setServices(array $services): Invoice
+    public function setServices(array $services): self
     {
         $this->services = $services;
+
         return $this;
     }
 
@@ -723,9 +783,10 @@ class Invoice implements EntityInterface
 
     /**
      * @param int|null $vatExemptionReason
+     *
      * @return Invoice
      */
-    public function setVatExemptionReason(?int $vatExemptionReason): Invoice
+    public function setVatExemptionReason(?int $vatExemptionReason): self
     {
         $this->vatExemptionReason = $vatExemptionReason;
 
@@ -742,11 +803,13 @@ class Invoice implements EntityInterface
 
     /**
      * @param Extension $extensions
+     *
      * @return Invoice
      */
-    public function setExtensions(Extension $extensions): Invoice
+    public function setExtensions(Extension $extensions): self
     {
         $this->extensions = $extensions;
+
         return $this;
     }
 }

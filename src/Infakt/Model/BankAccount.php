@@ -3,10 +3,9 @@
 namespace Infakt\Model;
 
 /**
- * This entity represents a bank account
+ * This entity represents a bank account.
  *
  * @link https://www.infakt.pl/developers/bank_accounts.html#def
- * @package Infakt\Model
  */
 class BankAccount implements EntityInterface
 {
@@ -45,9 +44,10 @@ class BankAccount implements EntityInterface
 
     /**
      * @param int $id
+     *
      * @return BankAccount
      */
-    public function setId(int $id): BankAccount
+    public function setId(int $id): self
     {
         $this->id = $id;
 
@@ -64,9 +64,10 @@ class BankAccount implements EntityInterface
 
     /**
      * @param string $bankName
+     *
      * @return BankAccount
      */
-    public function setBankName(string $bankName): BankAccount
+    public function setBankName(string $bankName): self
     {
         $this->bankName = $bankName;
 
@@ -83,9 +84,10 @@ class BankAccount implements EntityInterface
 
     /**
      * @param string $accountNumber
+     *
      * @return BankAccount
      */
-    public function setAccountNumber(string $accountNumber): BankAccount
+    public function setAccountNumber(string $accountNumber): self
     {
         $this->accountNumber = $accountNumber;
 
@@ -102,9 +104,10 @@ class BankAccount implements EntityInterface
 
     /**
      * @param string $swift
+     *
      * @return BankAccount
      */
-    public function setSwift(?string $swift): BankAccount
+    public function setSwift(?string $swift): self
     {
         $this->swift = $swift;
 
@@ -121,9 +124,10 @@ class BankAccount implements EntityInterface
 
     /**
      * @param bool $default
+     *
      * @return BankAccount
      */
-    public function setDefault(bool $default): BankAccount
+    public function setDefault(bool $default): self
     {
         $this->default = $default;
 
