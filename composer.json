@@ -1,6 +1,7 @@
 {
     "name": "miisieq/infakt-client",
     "type": "project",
+    "licence": "MIT",
     "require": {
         "guzzlehttp/guzzle": "^6.2",
         "doctrine/inflector": "^1.1"
