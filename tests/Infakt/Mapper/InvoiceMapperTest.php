@@ -88,7 +88,18 @@ class InvoiceMapperTest extends TestCase
         foreach ($invoice->getServices() as $key => $service) {
             $this->assertInstanceOf('\\Infakt\\Model\\Invoice\\Service', $service);
 
-            var_dump($key);
+            $this->assertSame($expected->getServices()[$key]->getId(), $service->getId());
+            $this->assertSame($expected->getServices()[$key]->getName(), $service->getName());
+            $this->assertSame($expected->getServices()[$key]->getTaxSymbol(), $service->getTaxSymbol());
+            $this->assertSame($expected->getServices()[$key]->getUnit(), $service->getUnit());
+            $this->assertSame($expected->getServices()[$key]->getQuantity(), $service->getQuantity());
+            $this->assertSame($expected->getServices()[$key]->getUnitNetPrice(), $service->getUnitNetPrice());
+            $this->assertSame($expected->getServices()[$key]->getUnitNetPriceBeforeDiscount(), $service->getUnitNetPriceBeforeDiscount());
+            $this->assertSame($expected->getServices()[$key]->getNetPrice(), $service->getNetPrice());
+            $this->assertSame($expected->getServices()[$key]->getGrossPrice(), $service->getGrossPrice());
+            $this->assertSame($expected->getServices()[$key]->getTaxPrice(), $service->getTaxPrice());
+            $this->assertSame($expected->getServices()[$key]->getSymbol(), $service->getSymbol());
+            $this->assertSame($expected->getServices()[$key]->getDiscount(), $service->getDiscount());
         }
     }
 
@@ -201,7 +212,36 @@ class InvoiceMapperTest extends TestCase
                 ->setVatExemptionReason(1)
                 ->setSaleType('merchandise')
                 ->setInvoiceDateKind('sale_date')
-                ->setServices([])
+                ->setServices([
+                    (new Invoice\Service())
+                        ->setId(39956922)
+                        ->setName('Dostawa')
+                        ->setTaxSymbol('23')
+                        ->setUnit('szt.')
+                        ->setQuantity(1)
+                        ->setUnitNetPrice(8.12)
+                        ->setUnitNetPriceBeforeDiscount(8.12)
+                        ->setNetPrice(8.12)
+                        ->setGrossPrice(9.99)
+                        ->setTaxPrice(1.87)
+                        ->setSymbol(null)
+                        ->setDiscount(0.0)
+                    ,
+                    (new Invoice\Service())
+                        ->setId(39957837)
+                        ->setName('Sprzęt')
+                        ->setTaxSymbol('zw')
+                        ->setUnit('szt.')
+                        ->setQuantity(0.5)
+                        ->setUnitNetPrice(100.00)
+                        ->setUnitNetPriceBeforeDiscount(100.00)
+                        ->setNetPrice(50.00)
+                        ->setGrossPrice(50.00)
+                        ->setTaxPrice(0.00)
+                        ->setSymbol('32.20.14')
+                        ->setDiscount(0.0)
+                    ,
+                ])
                 ->setExtensions((new Invoice\Extension())
                     ->setPayment((new Invoice\Extension\Payment())
                         ->setLink('https://www.infakt.pl/app/gateways/bluemedia/1bd93a788d60822473667492f1c6cca1')

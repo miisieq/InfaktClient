@@ -28,7 +28,7 @@ class InvoiceMapper extends AbstractMapper
                 ->setQuantity((float) $service['quantity'])
                 ->setUnitNetPrice($this->mapPrice($service['unit_net_price']))
                 ->setUnitNetPriceBeforeDiscount($this->mapPrice($service['unit_net_price_before_discount']))
-                ->setUnitNetPrice($this->mapPrice($service['net_price']))
+                ->setNetPrice($this->mapPrice($service['net_price']))
                 ->setGrossPrice($this->mapPrice($service['gross_price']))
                 ->setTaxPrice($this->mapPrice($service['tax_price']))
                 ->setSymbol($service['symbol'])
