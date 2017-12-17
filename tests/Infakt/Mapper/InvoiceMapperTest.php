@@ -225,8 +225,7 @@ class InvoiceMapperTest extends TestCase
                         ->setGrossPrice(9.99)
                         ->setTaxPrice(1.87)
                         ->setSymbol(null)
-                        ->setDiscount(0.0)
-                    ,
+                        ->setDiscount(0.0),
                     (new Invoice\Service())
                         ->setId(39957837)
                         ->setName('Sprzęt')
@@ -239,8 +238,7 @@ class InvoiceMapperTest extends TestCase
                         ->setGrossPrice(50.00)
                         ->setTaxPrice(0.00)
                         ->setSymbol('32.20.14')
-                        ->setDiscount(0.0)
-                    ,
+                        ->setDiscount(0.0),
                 ])
                 ->setExtensions((new Invoice\Extension())
                     ->setPayment((new Invoice\Extension\Payment())
