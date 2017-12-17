@@ -80,14 +80,4 @@ class InvoiceMapper extends AbstractMapper
 
         return $invoice;
     }
-
-    /**
-     * @param int|string $price
-     *
-     * @return float|null
-     */
-    protected function mapPrice($price) :?float
-    {
-        return is_null($price) ? null : (float) ($price / 100);
-    }
 }

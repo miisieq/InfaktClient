@@ -7,11 +7,6 @@ namespace Infakt\Mapper;
 abstract class AbstractMapper implements MapperInterface
 {
     /**
-     * Default date format.
-     */
-    const DATE_FORMAT = 'Y-m-d';
-
-    /**
      * Maps date string to \DateTime object.
      *
      * @param string $date
@@ -21,5 +16,17 @@ abstract class AbstractMapper implements MapperInterface
     protected function mapDate(?string $date): ?\DateTime
     {
         return $date ? new \DateTime($date) : null;
+    }
+
+    /**
+     * Maps price in cents to float
+     *
+     * @param int|string $price
+     *
+     * @return float|null
+     */
+    protected function mapPrice($price) :?float
+    {
+        return is_null($price) ? null : (float) ($price / 100);
     }
 }
