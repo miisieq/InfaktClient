@@ -106,7 +106,7 @@ class InvoiceMapperTest extends TestCase
     /**
      * @dataProvider dataProvider
      *
-     * @param array $expected
+     * @param array   $expected
      * @param Invoice $invoice
      */
     public function testReverseMap(array $expected, Invoice $invoice)

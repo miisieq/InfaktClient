@@ -7,9 +7,10 @@ namespace Infakt\Mapper;
 trait ReverseMapperTrait
 {
     /**
-     * Maps price to string
+     * Maps price to string.
      *
      * @param float|null $price
+     *
      * @return int|null
      */
     public function reverseMapPrice(?float $price): ?int
@@ -22,24 +23,26 @@ trait ReverseMapperTrait
             return 0;
         }
 
-        return (int)str_replace('.', '', number_format($price, 2, '.', ''));
+        return (int) str_replace('.', '', number_format($price, 2, '.', ''));
     }
 
     /**
-     * Maps quantity to integer or float
+     * Maps quantity to integer or float.
      *
      * @param float|null $quantity
+     *
      * @return int|float|null
      */
     public function reverseMapQuantity(?float $quantity)
     {
-        return (int)$quantity == $quantity ? (int)$quantity : $quantity;
+        return (int) $quantity == $quantity ? (int) $quantity : $quantity;
     }
 
     /**
-     * Maps \DateTime object to string
+     * Maps \DateTime object to string.
      *
      * @param \DateTime|null $date
+     *
      * @return null|string
      */
     public function reverseMapDate(?\DateTime $date): ?string
