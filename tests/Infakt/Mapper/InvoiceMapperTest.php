@@ -103,6 +103,41 @@ class InvoiceMapperTest extends TestCase
         }
     }
 
+    /**
+     * @dataProvider dataProvider
+     *
+     * @param array $expected
+     * @param Invoice $invoice
+     */
+    public function testReverseMap(array $expected, Invoice $invoice)
+    {
+        $data = $this->mapper->reverseMap($invoice);
+
+        foreach ($expected as $key => $value) {
+            if (!is_array($value)) {
+                $this->assertSame($expected[$key], $data[$key]);
+            } elseif ('services' === $key) {
+                /** @var Invoice\Service $service */
+                foreach ($data[$key] as $serviceKey => $service) {
+                    $this->assertSame($expected[$key][$serviceKey]['id'], $service['id']);
+                    $this->assertSame($expected[$key][$serviceKey]['name'], $service['name']);
+                    $this->assertSame($expected[$key][$serviceKey]['tax_symbol'], $service['tax_symbol']);
+                    $this->assertSame($expected[$key][$serviceKey]['unit'], $service['unit']);
+                    $this->assertSame($expected[$key][$serviceKey]['quantity'], $service['quantity']);
+                    $this->assertSame($expected[$key][$serviceKey]['unit_net_price'], $service['unit_net_price']);
+                    $this->assertSame($expected[$key][$serviceKey]['net_price'], $service['net_price']);
+                    $this->assertSame($expected[$key][$serviceKey]['gross_price'], $service['gross_price']);
+                    $this->assertSame($expected[$key][$serviceKey]['tax_price'], $service['tax_price']);
+                    $this->assertSame($expected[$key][$serviceKey]['symbol'], $service['symbol']);
+                    $this->assertSame(
+                        $expected[$key][$serviceKey]['unit_net_price_before_discount'],
+                        $service['unit_net_price_before_discount']
+                    );
+                }
+            }
+        }
+    }
+
     public function dataProvider()
     {
         return [
@@ -111,7 +146,7 @@ class InvoiceMapperTest extends TestCase
                     'id'                   => 18433599,
                     'number'               => '2/12/2017',
                     'currency'             => 'PLN',
-                    'paid_price'           => '0',
+                    'paid_price'           => 0,
                     'notes'                => 'powód zwolnienia z VAT: na podstawie art. 113 ust. 1 ustawy o VAT',
                     'kind'                 => 'vat',
                     'payment_method'       => 'transfer',

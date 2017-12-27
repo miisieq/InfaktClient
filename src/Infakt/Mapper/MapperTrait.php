@@ -4,7 +4,7 @@ declare(strict_types=1);
 
 namespace Infakt\Mapper;
 
-abstract class AbstractMapper implements MapperInterface
+trait MapperTrait
 {
     /**
      * Maps date string to \DateTime object.
@@ -13,7 +13,7 @@ abstract class AbstractMapper implements MapperInterface
      *
      * @return \DateTime|null
      */
-    protected function mapDate(?string $date): ?\DateTime
+    public function mapDate(?string $date): ?\DateTime
     {
         return $date ? new \DateTime($date) : null;
     }
@@ -25,7 +25,7 @@ abstract class AbstractMapper implements MapperInterface
      *
      * @return float|null
      */
-    protected function mapPrice($price) :?float
+    public function mapPrice($price): ?float
     {
         return is_null($price) ? null : (float) ($price / 100);
     }

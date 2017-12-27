@@ -6,7 +6,7 @@ namespace Infakt\Mapper;
 
 use Infakt\Model\BankAccount;
 
-class BankAccountMapper extends AbstractMapper
+class BankAccountMapper implements MapperInterface
 {
     /**
      * {@inheritdoc}

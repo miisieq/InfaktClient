@@ -6,7 +6,7 @@ namespace Infakt\Mapper;
 
 use Infakt\Model\Client;
 
-class ClientMapper extends AbstractMapper
+class ClientMapper implements MapperInterface
 {
     /**
      * {@inheritdoc}

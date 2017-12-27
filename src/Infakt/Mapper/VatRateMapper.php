@@ -6,7 +6,7 @@ namespace Infakt\Mapper;
 
 use Infakt\Model\VatRate;
 
-class VatRateMapper extends AbstractMapper
+class VatRateMapper implements MapperInterface
 {
     /**
      * {@inheritdoc}
