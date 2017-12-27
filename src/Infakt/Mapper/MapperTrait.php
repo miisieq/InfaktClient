@@ -19,7 +19,7 @@ trait MapperTrait
     }
 
     /**
-     * Maps price in cents to float
+     * Maps price in cents to float.
      *
      * @param int|string $price
      *
