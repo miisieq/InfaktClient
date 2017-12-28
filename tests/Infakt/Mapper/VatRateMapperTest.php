@@ -36,9 +36,9 @@ class VatRateMapperTest extends TestCase
         return [
             [
                 [
-                    'id'     => 7,
-                    'rate'   => '23.0',
-                    'name'   => '23%',
+                    'id' => 7,
+                    'rate' => '23.0',
+                    'name' => '23%',
                     'symbol' => '23',
                 ],
                 (new VatRate())
@@ -49,11 +49,10 @@ class VatRateMapperTest extends TestCase
             ],
             [
                 [
-                    'id'     => 37,
-                    'rate'   => '0.0',
-                    'name'   => 'o.o.',
+                    'id' => 37,
+                    'rate' => '0.0',
+                    'name' => 'o.o.',
                     'symbol' => 'oo',
-
                 ],
                 (new VatRate())
                     ->setId(37)

@@ -7,7 +7,7 @@ namespace Infakt\Model;
 /**
  * This entity represents a client.
  *
- * @link https://www.infakt.pl/developers/clients.html#def
+ * @see https://www.infakt.pl/developers/clients.html#def
  */
 class Client implements EntityInterface
 {

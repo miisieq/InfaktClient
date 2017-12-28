@@ -7,7 +7,7 @@ namespace Infakt\Model;
 /**
  * This entity represents a vat rate.
  *
- * @link https://www.infakt.pl/developers/vat_rates.html#def
+ * @see https://www.infakt.pl/developers/vat_rates.html#def
  */
 class VatRate implements EntityInterface
 {
