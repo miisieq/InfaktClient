@@ -10,7 +10,7 @@ use Infakt\Model\Invoice\Service;
 /**
  * This entity represents an invoice.
  *
- * @link https://www.infakt.pl/developers/invoices.html#def
+ * @see https://www.infakt.pl/developers/invoices.html#def
  */
 class Invoice implements EntityInterface
 {
@@ -78,6 +78,7 @@ class Invoice implements EntityInterface
      * @var string
      */
     protected $status;
+
     /**
      * @var \DateTime
      */

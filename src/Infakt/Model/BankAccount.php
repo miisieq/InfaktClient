@@ -5,7 +5,7 @@ namespace Infakt\Model;
 /**
  * This entity represents a bank account.
  *
- * @link https://www.infakt.pl/developers/bank_accounts.html#def
+ * @see https://www.infakt.pl/developers/bank_accounts.html#def
  */
 class BankAccount implements EntityInterface
 {

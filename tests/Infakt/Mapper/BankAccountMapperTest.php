@@ -37,11 +37,11 @@ class BankAccountMapperTest extends TestCase
         return [
             [
                 [
-                    'id'             => 123456789,
-                    'bank_name'      => 'Narodowy Bank Polski',
+                    'id' => 123456789,
+                    'bank_name' => 'Narodowy Bank Polski',
                     'account_number' => '67101011400149482222000000',
-                    'swift'          => 'NBPLPLPW',
-                    'default'        => true,
+                    'swift' => 'NBPLPLPW',
+                    'default' => true,
                 ],
                 (new BankAccount())
                     ->setId(123456789)
@@ -52,12 +52,11 @@ class BankAccountMapperTest extends TestCase
             ],
             [
                 [
-                    'id'             => 987654321,
-                    'bank_name'      => 'Bank Ochrony Środowiska SA',
+                    'id' => 987654321,
+                    'bank_name' => 'Bank Ochrony Środowiska SA',
                     'account_number' => '49154000042018909455930002',
-                    'swift'          => null,
-                    'default'        => false,
-
+                    'swift' => null,
+                    'default' => false,
                 ],
                 (new BankAccount())
                     ->setId(987654321)

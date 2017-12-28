@@ -9,7 +9,7 @@ use Infakt\Model\EntityInterface;
 /**
  * This entity represents an invoice service.
  *
- * @link https://www.infakt.pl/developers/invoices.html#services_def
+ * @see https://www.infakt.pl/developers/invoices.html#services_def
  */
 class Service implements EntityInterface
 {
