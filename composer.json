@@ -1,5 +1,6 @@
 {
     "name": "miisieq/infakt-client",
+    "description": "InfaktClient is a PHP library for the third version of Infakt REST API that makes it easy to perform CRUD (create, read, update and delete) operations on invoices, clients and products.",
     "type": "library",
     "license": "MIT",
     "require": {
