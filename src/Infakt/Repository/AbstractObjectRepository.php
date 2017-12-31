@@ -92,6 +92,7 @@ abstract class AbstractObjectRepository implements ObjectRepositoryInterface
      * Delete an entity.
      *
      * @param EntityInterface $entity
+     *
      * @return \Psr\Http\Message\ResponseInterface
      */
     public function delete(EntityInterface $entity)
