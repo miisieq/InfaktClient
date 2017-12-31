@@ -14,4 +14,6 @@ interface ObjectRepositoryInterface
     public function getAll(int $page, int $limit);
 
     public function create(EntityInterface $entity);
+
+    public function delete(EntityInterface $entity);
 }

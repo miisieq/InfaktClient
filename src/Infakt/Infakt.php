@@ -2,8 +2,7 @@
 
 namespace Infakt;
 
-use GuzzleHttp\Client;
-use GuzzleHttp\ClientInterface;
+use GuzzleHttp\{Client, ClientInterface};
 use Infakt\Exception\ConfigurationException;
 use Infakt\Repository\AbstractObjectRepository;
 
@@ -59,27 +58,67 @@ class Infakt
         return new $className($this);
     }
 
-    public function get($query)
+    /**
+     * Finds an entity by its identifier.
+     *
+     * @param string $className
+     * @param int $id
+     * @return Model\EntityInterface|null The entity instance or NULL if the entity can not be found.
+     */
+    public function find(string $className, int $id)
+    {
+        return $this->getRepository($className)->get($id);
+    }
+
+    /**
+     * Send HTTP GET request
+     *
+     * @param string $query
+     * @return \Psr\Http\Message\ResponseInterface
+     */
+    public function get(string $query)
     {
         return $this->client->request('get', $this->buildQuery($query), ['headers' => $this->getAuthorizationHeader()]);
     }
 
-    public function post($query, $body = null)
+    /**
+     * Send HTTP DELETE request
+     *
+     * @param string $query
+     * @return \Psr\Http\Message\ResponseInterface
+     */
+    public function delete(string $query)
+    {
+        return $this->client->request('delete', $this->buildQuery($query), ['headers' => $this->getAuthorizationHeader()]);
+    }
+
+    /**
+     * Send HTTP POST request
+     *
+     * @param string $query
+     * @param null|string $body
+     * @return \Psr\Http\Message\ResponseInterface
+     */
+    public function post(string $query, ?string $body = null)
     {
         $options = [
-            'headers' => [
-                'Content-Type' => 'application/json',
-            ],
+            'headers' => $this->getAuthorizationHeader(),
         ];
 
         if ($body) {
             $options['body'] = $body;
         }
 
-        return $this->client->post($this->buildQuery($query), $options);
+        return $this->client->request('post', $this->buildQuery($query), $options);
     }
 
-    public function buildQuery($query)
+    /**
+     * Attach endpoint URL to the query
+     *
+     * @param string $query
+     * @return string
+     */
+    public function buildQuery(string $query)
     {
         return self::API_ENDPOINT.'/'.self::API_VERSION.'/'.$query;
     }

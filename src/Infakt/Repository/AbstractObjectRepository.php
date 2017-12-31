@@ -49,11 +49,15 @@ abstract class AbstractObjectRepository implements ObjectRepositoryInterface
      *
      * @param $entityId
      *
-     * @return EntityInterface
+     * @return null|EntityInterface
      */
     public function get(int $entityId)
     {
         $response = $this->infakt->get($this->getServiceName().'/'.$entityId.'.json');
+
+        if (2 != substr($response->getStatusCode(), 0, 1)) {
+            return null;
+        }
 
         return $this->getMapper()->map(\GuzzleHttp\json_decode($response->getBody()->getContents(), true));
     }
@@ -82,6 +86,17 @@ abstract class AbstractObjectRepository implements ObjectRepositoryInterface
     public function create(EntityInterface $entity)
     {
         // To implement
+    }
+
+    /**
+     * Delete an entity.
+     *
+     * @param EntityInterface $entity
+     * @return \Psr\Http\Message\ResponseInterface
+     */
+    public function delete(EntityInterface $entity)
+    {
+        return $this->infakt->delete($this->getServiceName().'/'.$entity->getId().'.json');
     }
 
     public function buildQuery(Criteria $criteria)
