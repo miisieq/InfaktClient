@@ -2,7 +2,8 @@
 
 namespace Infakt;
 
-use GuzzleHttp\{Client, ClientInterface};
+use GuzzleHttp\Client;
+use GuzzleHttp\ClientInterface;
 use Infakt\Exception\ConfigurationException;
 use Infakt\Repository\AbstractObjectRepository;
 
@@ -62,8 +63,9 @@ class Infakt
      * Finds an entity by its identifier.
      *
      * @param string $className
-     * @param int $id
-     * @return Model\EntityInterface|null The entity instance or NULL if the entity can not be found.
+     * @param int    $id
+     *
+     * @return Model\EntityInterface|null the entity instance or NULL if the entity can not be found
      */
     public function find(string $className, int $id)
     {
@@ -71,9 +73,10 @@ class Infakt
     }
 
     /**
-     * Send HTTP GET request
+     * Send HTTP GET request.
      *
      * @param string $query
+     *
      * @return \Psr\Http\Message\ResponseInterface
      */
     public function get(string $query)
@@ -82,9 +85,10 @@ class Infakt
     }
 
     /**
-     * Send HTTP DELETE request
+     * Send HTTP DELETE request.
      *
      * @param string $query
+     *
      * @return \Psr\Http\Message\ResponseInterface
      */
     public function delete(string $query)
@@ -93,10 +97,11 @@ class Infakt
     }
 
     /**
-     * Send HTTP POST request
+     * Send HTTP POST request.
      *
-     * @param string $query
+     * @param string      $query
      * @param null|string $body
+     *
      * @return \Psr\Http\Message\ResponseInterface
      */
     public function post(string $query, ?string $body = null)
@@ -113,9 +118,10 @@ class Infakt
     }
 
     /**
-     * Attach endpoint URL to the query
+     * Attach endpoint URL to the query.
      *
      * @param string $query
+     *
      * @return string
      */
     public function buildQuery(string $query)
