@@ -20,8 +20,8 @@ composer require miisieq/infakt-client
 
 ```php
 $infakt = new \Infakt\Infakt(
-    new \GuzzleHttp\Client(),
-    [ 'api_key' => '7e2356a0a400d6ec3d2ced911991f3e8' ]
+    '7e2356a0a400d6ec3d2ced911991f3e8',
+    new \GuzzleHttp\Client()
 );
 ```
 
@@ -58,8 +58,17 @@ $infakt->getRepository(\Infakt\Model\VatRate::class)->getAll()
 
 See more: [Infakt API Documentation](https://www.infakt.pl/developers/vat_rates.html)
 
+## Contributing
+### Running tests ([phpunit/phpunit](https://github.com/sebastianbergmann/phpunit))
 
+```bash
+$ composer tests
+```
 
+### Running code style fixer ([friendsofphp/php-cs-fixer](https://github.com/FriendsOfPHP/PHP-CS-Fixer))
+```bash
+$ composer phpcs
+```
 
 ## License
 This package is released under the MIT license. See the included
