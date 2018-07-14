@@ -21,7 +21,7 @@ class InvoiceRepositoryTest extends TestCase
 
     protected function setUp()
     {
-        $this->repository = (new Infakt(new TestClient(), ['api_key' => 'X']))->getRepository('\\Infakt\\Model\\Invoice');
+        $this->repository = (new Infakt('XXX', new TestClient()))->getRepository('\\Infakt\\Model\\Invoice');
     }
 
     protected function tearDown()

@@ -4,6 +4,9 @@ declare(strict_types=1);
 
 namespace Infakt\Mapper;
 
+/**
+ * Trait MapperTrait.
+ */
 trait MapperTrait
 {
     /**
@@ -27,6 +30,6 @@ trait MapperTrait
      */
     public function mapPrice($price): ?float
     {
-        return is_null($price) ? null : (float) ($price / 100);
+        return null === $price ? null : (float) ($price / 100);
     }
 }

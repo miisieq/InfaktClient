@@ -1,12 +1,18 @@
 <?php
 
+declare(strict_types=1);
+
 namespace Infakt;
 
 use GuzzleHttp\Client;
 use GuzzleHttp\ClientInterface;
-use Infakt\Exception\ConfigurationException;
+use Infakt\Exception\LogicException;
 use Infakt\Repository\AbstractObjectRepository;
+use Psr\Http\Message\ResponseInterface;
 
+/**
+ * Class Infakt.
+ */
 class Infakt
 {
     const API_ENDPOINT = 'https://api.infakt.pl';
@@ -24,52 +30,35 @@ class Infakt
     protected $apiKey;
 
     /**
-     * Client constructor.
+     * Infakt constructor.
      *
+     * @param string               $apiKey
      * @param ClientInterface|null $client
-     * @param array                $config
-     *
-     * @throws ConfigurationException
      */
-    public function __construct(ClientInterface $client = null, array $config = [])
+    public function __construct(string $apiKey, ClientInterface $client = null)
     {
-        if (!isset($config['api_key'])) {
-            throw new ConfigurationException('Required "api_key" key not supplied in the config.');
-        }
-
-        $this->apiKey = $config['api_key'];
+        $this->apiKey = $apiKey;
         $this->client = $client instanceof ClientInterface ? $client : new Client();
     }
 
     /**
+     * Return object repository for a specific model class name.
+     *
      * @param $className
      *
-     * @throws ConfigurationException
+     * @throws LogicException
      *
      * @return AbstractObjectRepository
      */
-    public function getRepository($className)
+    public function getRepository(string $className): AbstractObjectRepository
     {
         $className = 'Infakt\\Repository\\'.substr($className, strrpos($className, '\\') + 1).'Repository';
 
         if (!class_exists($className)) {
-            throw new ConfigurationException("There is no repository to work with class $className.");
+            throw new LogicException("There is no repository to work with class $className.");
         }
 
         return new $className($this);
-    }
-
-    /**
-     * Finds an entity by its identifier.
-     *
-     * @param string $className
-     * @param int    $id
-     *
-     * @return Model\EntityInterface|null the entity instance or NULL if the entity can not be found
-     */
-    public function find(string $className, int $id)
-    {
-        return $this->getRepository($className)->get($id);
     }
 
     /**
@@ -79,7 +68,7 @@ class Infakt
      *
      * @return \Psr\Http\Message\ResponseInterface
      */
-    public function get(string $query)
+    public function get(string $query): ResponseInterface
     {
         return $this->client->request('get', $this->buildQuery($query), ['headers' => $this->getAuthorizationHeader()]);
     }
@@ -91,7 +80,7 @@ class Infakt
      *
      * @return \Psr\Http\Message\ResponseInterface
      */
-    public function delete(string $query)
+    public function delete(string $query): ResponseInterface
     {
         return $this->client->request('delete', $this->buildQuery($query), ['headers' => $this->getAuthorizationHeader()]);
     }
@@ -104,7 +93,7 @@ class Infakt
      *
      * @return \Psr\Http\Message\ResponseInterface
      */
-    public function post(string $query, ?string $body = null)
+    public function post(string $query, ?string $body = null): ResponseInterface
     {
         $options = [
             'headers' => $this->getAuthorizationHeader(),
@@ -124,7 +113,7 @@ class Infakt
      *
      * @return string
      */
-    public function buildQuery(string $query)
+    public function buildQuery(string $query): string
     {
         return self::API_ENDPOINT.'/'.self::API_VERSION.'/'.$query;
     }
@@ -132,7 +121,7 @@ class Infakt
     /**
      * @return array
      */
-    protected function getAuthorizationHeader()
+    protected function getAuthorizationHeader(): array
     {
         return [
             'X-inFakt-ApiKey' => $this->apiKey,

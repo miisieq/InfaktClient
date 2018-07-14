@@ -30,7 +30,7 @@ class InfaktTest extends TestCase
 
     public function testInvalidRepositoryClass()
     {
-        $this->expectException('\\Infakt\\Exception\\ConfigurationException');
+        $this->expectException('\\Infakt\\Exception\\LogicException');
         $this->infakt->getRepository('\\Infakt\\Model\\Invoic');
     }
 
@@ -42,12 +42,6 @@ class InfaktTest extends TestCase
         );
     }
 
-    public function testNotProvidedKey()
-    {
-        $this->expectException('\\Infakt\\Exception\\ConfigurationException');
-        new Infakt(new TestClient(), []);
-    }
-
     public function testBuildQuery()
     {
         $this->assertSame('https://api.infakt.pl/v3/invoices', $this->infakt->buildQuery('invoices'));
@@ -55,7 +49,7 @@ class InfaktTest extends TestCase
 
     protected function setUp()
     {
-        $this->infakt = new Infakt(new TestClient(), ['api_key' => 'XXX']);
+        $this->infakt = new Infakt('XXX', new TestClient());
     }
 
     protected function tearDown()

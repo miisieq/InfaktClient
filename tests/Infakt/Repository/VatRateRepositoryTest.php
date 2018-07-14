@@ -21,7 +21,7 @@ class VatRateRepositoryTest extends TestCase
 
     protected function setUp()
     {
-        $this->repository = (new Infakt(new TestClient(), ['api_key' => 'X']))->getRepository('\\Infakt\\Model\\VatRate');
+        $this->repository = (new Infakt('XXX', new TestClient()))->getRepository('\\Infakt\\Model\\VatRate');
     }
 
     protected function tearDown()

@@ -16,6 +16,51 @@ Install [Composer](https://getcomposer.org/download/) and run the following comm
 composer require miisieq/infakt-client
 ```
 
+### Step 2: Create an instance of the client
+
+```php
+$infakt = new \Infakt\Infakt(
+    new \GuzzleHttp\Client(),
+    [ 'api_key' => '7e2356a0a400d6ec3d2ced911991f3e8' ]
+);
+```
+
+## Resources reference
+
+### Clients
+#### Get all
+```php
+$clients = $infakt->getRepository(\Infakt\Model\Client::class)->getAll();
+```
+#### Get by ID
+```php
+$client = $infakt->getRepository(\Infakt\Model\Client::class)->get(2887744);
+```
+See more: [Infakt API Documentation](https://www.infakt.pl/developers/clients.html#def)
+
+### Bank Accounts
+#### Get all
+```php
+$bankAccounts = $infakt->getRepository(\Infakt\Model\BankAccount::class)->getAll();
+```
+#### Get by ID
+```php
+$bankAccount = $infakt->getRepository(\Infakt\Model\BankAccount::class)->get(4786512);
+```
+See more: [Infakt API Documentation](https://www.infakt.pl/developers/bank_accounts.html#def)
+
+### VAT Rate
+#### Get all
+
+```php
+$infakt->getRepository(\Infakt\Model\VatRate::class)->getAll()
+```
+
+See more: [Infakt API Documentation](https://www.infakt.pl/developers/vat_rates.html)
+
+
+
+
 ## License
 This package is released under the MIT license. See the included
 [LICENSE](LICENSE) file for more information.

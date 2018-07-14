@@ -4,6 +4,7 @@
     "type": "library",
     "license": "MIT",
     "require": {
+        "php": "^7.1",
         "guzzlehttp/guzzle": "^6.2",
         "doctrine/inflector": "^1.1"
     },
@@ -25,7 +26,12 @@
         }
     },
     "require-dev": {
-        "phpunit/phpunit": "^6.5",
-        "satooshi/php-coveralls": "^2.0"
+        "friendsofphp/php-cs-fixer": "^2.12",
+        "php-coveralls/php-coveralls": "^2.1",
+        "phpunit/phpunit": "^7.2"
+    },
+    "scripts": {
+        "tests": "./vendor/phpunit/phpunit/phpunit",
+        "phpcs" : "./vendor/friendsofphp/php-cs-fixer/php-cs-fixer fix -v"
     }
 }

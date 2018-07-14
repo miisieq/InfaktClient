@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 namespace Infakt\Repository;
 
 use Doctrine\Common\Inflector\Inflector;
