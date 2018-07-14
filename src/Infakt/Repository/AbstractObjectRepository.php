@@ -57,7 +57,7 @@ abstract class AbstractObjectRepository implements ObjectRepositoryInterface
     {
         $response = $this->infakt->get($this->getServiceName().'/'.$entityId.'.json');
 
-        if (2 != substr($response->getStatusCode(), 0, 1)) {
+        if (2 != substr((string)$response->getStatusCode(), 0, 1)) {
             return null;
         }
 
