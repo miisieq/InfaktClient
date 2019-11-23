@@ -32,7 +32,7 @@ class BankAccountMapperTest extends TestCase
         $this->assertSame($expected->isDefault(), $bankAccount->isDefault());
     }
 
-    public function dataProvider()
+    public function dataProvider(): array
     {
         return [
             [
@@ -66,12 +66,12 @@ class BankAccountMapperTest extends TestCase
         ];
     }
 
-    protected function setUp()
+    protected function setUp(): void
     {
         $this->mapper = new BankAccountMapper();
     }
 
-    protected function tearDown()
+    protected function tearDown(): void
     {
         $this->mapper = null;
     }

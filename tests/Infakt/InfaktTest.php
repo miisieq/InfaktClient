@@ -15,12 +15,12 @@ class InfaktTest extends TestCase
      */
     protected $infakt;
 
-    public function testInstanceOf()
+    public function testInstanceOf(): void
     {
         $this->assertInstanceOf('\\Infakt\\Infakt', $this->infakt);
     }
 
-    public function testRepository()
+    public function testRepository(): void
     {
         $this->assertInstanceOf(
             'Infakt\\Repository\\InvoiceRepository',
@@ -28,13 +28,13 @@ class InfaktTest extends TestCase
         );
     }
 
-    public function testInvalidRepositoryClass()
+    public function testInvalidRepositoryClass(): void
     {
         $this->expectException('\\Infakt\\Exception\\LogicException');
         $this->infakt->getRepository('\\Infakt\\Model\\Invoic');
     }
 
-    public function testGetMethodResponse()
+    public function testGetMethodResponse(): void
     {
         $this->assertInstanceOf(
             '\\Psr\\Http\\Message\\ResponseInterface',
@@ -42,17 +42,17 @@ class InfaktTest extends TestCase
         );
     }
 
-    public function testBuildQuery()
+    public function testBuildQuery(): void
     {
         $this->assertSame('https://api.infakt.pl/v3/invoices', $this->infakt->buildQuery('invoices'));
     }
 
-    protected function setUp()
+    protected function setUp(): void
     {
         $this->infakt = new Infakt('XXX', new TestClient());
     }
 
-    protected function tearDown()
+    protected function tearDown(): void
     {
         $this->infakt = null;
     }

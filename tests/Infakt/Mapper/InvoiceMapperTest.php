@@ -21,7 +21,7 @@ class InvoiceMapperTest extends TestCase
      * @param array   $data
      * @param Invoice $expected
      */
-    public function testMap(array $data, Invoice $expected)
+    public function testMap(array $data, Invoice $expected): void
     {
         $invoice = $this->mapper->map($data);
 
@@ -109,7 +109,7 @@ class InvoiceMapperTest extends TestCase
      * @param array   $expected
      * @param Invoice $invoice
      */
-    public function testReverseMap(array $expected, Invoice $invoice)
+    public function testReverseMap(array $expected, Invoice $invoice): void
     {
         $data = $this->mapper->reverseMap($invoice);
 
@@ -138,7 +138,7 @@ class InvoiceMapperTest extends TestCase
         }
     }
 
-    public function dataProvider()
+    public function dataProvider(): array
     {
         return [
             [
@@ -289,12 +289,12 @@ class InvoiceMapperTest extends TestCase
         ];
     }
 
-    protected function setUp()
+    protected function setUp(): void
     {
         $this->mapper = new InvoiceMapper();
     }
 
-    protected function tearDown()
+    protected function tearDown(): void
     {
         $this->mapper = null;
     }
