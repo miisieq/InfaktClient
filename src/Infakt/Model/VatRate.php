@@ -31,17 +31,12 @@ class VatRate implements EntityInterface
      */
     protected $symbol;
 
-    /**
-     * @return int
-     */
     public function getId(): int
     {
         return $this->id;
     }
 
     /**
-     * @param int $id
-     *
      * @return VatRate
      */
     public function setId(int $id): self
@@ -51,17 +46,12 @@ class VatRate implements EntityInterface
         return $this;
     }
 
-    /**
-     * @return float
-     */
     public function getRate(): float
     {
         return $this->rate;
     }
 
     /**
-     * @param float $rate
-     *
      * @return VatRate
      */
     public function setRate(float $rate): self
@@ -71,17 +61,12 @@ class VatRate implements EntityInterface
         return $this;
     }
 
-    /**
-     * @return string
-     */
     public function getName(): string
     {
         return $this->name;
     }
 
     /**
-     * @param string $name
-     *
      * @return VatRate
      */
     public function setName(string $name): self
@@ -91,17 +76,12 @@ class VatRate implements EntityInterface
         return $this;
     }
 
-    /**
-     * @return string
-     */
     public function getSymbol(): string
     {
         return $this->symbol;
     }
 
     /**
-     * @param string $symbol
-     *
      * @return VatRate
      */
     public function setSymbol(string $symbol): self

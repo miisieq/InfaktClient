@@ -6,9 +6,6 @@ namespace Infakt\Model;
 
 interface EntityInterface
 {
-    /**
-     * @return int
-     */
     public function getId(): int;
 
     /**

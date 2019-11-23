@@ -12,13 +12,12 @@ class InvoiceRepository extends AbstractObjectRepository
      * Get a next invoice number.
      *
      * @param string $kind
-     * @return string
      */
     public function getNextNumber($kind = 'vat'): string
     {
         $kinds = ['final', 'advance', 'margin', 'proforma', 'vat'];
 
-        if (!in_array($kind, $kinds)) {
+        if (!\in_array($kind, $kinds)) {
             throw new \LogicException('Invalid invoice kind "'.$kind.'"');
         }
 
@@ -32,9 +31,6 @@ class InvoiceRepository extends AbstractObjectRepository
 
     /**
      * Mark an invoice as paid.
-     *
-     * @param Invoice $invoice
-     * @param \DateTime|null $paidDate
      */
     public function markAsPaid(Invoice $invoice, \DateTime $paidDate = null): void
     {

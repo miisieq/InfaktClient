@@ -36,17 +36,12 @@ class BankAccount implements EntityInterface
      */
     protected $default = false;
 
-    /**
-     * @return int
-     */
     public function getId(): int
     {
         return $this->id;
     }
 
     /**
-     * @param int $id
-     *
      * @return BankAccount
      */
     public function setId(int $id): self
@@ -56,17 +51,12 @@ class BankAccount implements EntityInterface
         return $this;
     }
 
-    /**
-     * @return string
-     */
     public function getBankName(): string
     {
         return $this->bankName;
     }
 
     /**
-     * @param string $bankName
-     *
      * @return BankAccount
      */
     public function setBankName(string $bankName): self
@@ -76,17 +66,12 @@ class BankAccount implements EntityInterface
         return $this;
     }
 
-    /**
-     * @return string
-     */
     public function getAccountNumber(): string
     {
         return $this->accountNumber;
     }
 
     /**
-     * @param string $accountNumber
-     *
      * @return BankAccount
      */
     public function setAccountNumber(string $accountNumber): self
@@ -116,17 +101,12 @@ class BankAccount implements EntityInterface
         return $this;
     }
 
-    /**
-     * @return bool
-     */
     public function isDefault(): bool
     {
         return $this->default;
     }
 
     /**
-     * @param bool $default
-     *
      * @return BankAccount
      */
     public function setDefault(bool $default): self

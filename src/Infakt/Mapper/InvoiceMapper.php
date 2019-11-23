@@ -85,11 +85,6 @@ class InvoiceMapper implements MapperInterface, ReverseMapperInterface
         return $invoice;
     }
 
-    /**
-     * @param EntityInterface $entity
-     *
-     * @return array
-     */
     public function reverseMap(EntityInterface $entity): array
     {
         /** @var $entity Invoice */
