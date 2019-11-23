@@ -12,8 +12,6 @@ interface MapperInterface
      * Map array to object.
      *
      * @param $data
-     *
-     * @return EntityInterface
      */
-    public function map($data);
+    public function map($data): EntityInterface;
 }

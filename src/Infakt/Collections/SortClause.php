@@ -63,7 +63,7 @@ class SortClause
      */
     public function setOrder($order)
     {
-        if (!in_array($order, [self::ORDER_ASC, self::ORDER_DESC])) {
+        if (!\in_array($order, [self::ORDER_ASC, self::ORDER_DESC])) {
             throw new LogicException('Invalid order argument.');
         }
 

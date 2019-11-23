@@ -28,11 +28,6 @@ class Criteria
 
     /**
      * Criteria constructor.
-     *
-     * @param array $comparisons
-     * @param array $sortClauses
-     * @param int   $firstResult
-     * @param int   $maxResults
      */
     public function __construct(array $comparisons = [], array $sortClauses = [], int $firstResult = 0, int $maxResults = 10)
     {
@@ -44,8 +39,6 @@ class Criteria
 
     /**
      * Gets the current first result option of this Criteria.
-     *
-     * @return int
      */
     public function getFirstResult(): int
     {
@@ -54,8 +47,6 @@ class Criteria
 
     /**
      * Gets maxResults.
-     *
-     * @return int
      */
     public function getMaxResults(): int
     {
@@ -63,8 +54,6 @@ class Criteria
     }
 
     /**
-     * @param Comparison $comparison
-     *
      * @return $this
      */
     public function addComparison(Comparison $comparison): self
@@ -95,8 +84,6 @@ class Criteria
     }
 
     /**
-     * @param SortClause $sortClause
-     *
      * @return Criteria
      */
     public function addSortClause(SortClause $sortClause): self

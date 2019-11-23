@@ -5,6 +5,7 @@ declare(strict_types=1);
 namespace Infakt\Mapper;
 
 use Infakt\Model\Client;
+use Infakt\Model\EntityInterface;
 
 class ClientMapper implements MapperInterface
 {
@@ -15,7 +16,7 @@ class ClientMapper implements MapperInterface
      *
      * @return Client
      */
-    public function map($data)
+    public function map($data): EntityInterface
     {
         return (new Client())
             ->setId((int) $data['id'])

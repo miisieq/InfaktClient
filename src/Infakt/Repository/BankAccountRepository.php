@@ -12,7 +12,7 @@ class BankAccountRepository extends AbstractObjectRepository
     /**
      * {@inheritdoc}
      */
-    public function get(int $entityId)
+    public function get(int $entityId): EntityInterface
     {
         throw new LogicException('This repository does not implement entity getting.');
     }
@@ -20,7 +20,7 @@ class BankAccountRepository extends AbstractObjectRepository
     /**
      * {@inheritdoc}
      */
-    public function create(EntityInterface $entity)
+    public function create(EntityInterface $entity): EntityInterface
     {
         throw new LogicException('This repository does not implement entity creation.');
     }

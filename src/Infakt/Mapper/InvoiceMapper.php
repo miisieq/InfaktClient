@@ -19,7 +19,7 @@ class InvoiceMapper implements MapperInterface, ReverseMapperInterface
      *
      * @return Invoice
      */
-    public function map($data): Invoice
+    public function map($data): EntityInterface
     {
         $services = [];
 
@@ -85,11 +85,6 @@ class InvoiceMapper implements MapperInterface, ReverseMapperInterface
         return $invoice;
     }
 
-    /**
-     * @param EntityInterface $entity
-     *
-     * @return array
-     */
     public function reverseMap(EntityInterface $entity): array
     {
         /** @var $entity Invoice */

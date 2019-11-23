@@ -13,8 +13,6 @@ trait MapperTrait
      * Maps date string to \DateTime object.
      *
      * @param string $date
-     *
-     * @return \DateTime|null
      */
     public function mapDate(?string $date): ?\DateTime
     {
@@ -25,8 +23,6 @@ trait MapperTrait
      * Maps price in cents to float.
      *
      * @param int|string $price
-     *
-     * @return float|null
      */
     public function mapPrice($price): ?float
     {

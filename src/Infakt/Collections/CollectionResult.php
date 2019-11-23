@@ -21,8 +21,6 @@ class CollectionResult
     /**
      * Add item to collection.
      *
-     * @param EntityInterface $item
-     *
      * @return $this
      */
     public function addItemToCollection(EntityInterface $item): self

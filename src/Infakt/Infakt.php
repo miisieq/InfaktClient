@@ -31,9 +31,6 @@ class Infakt
 
     /**
      * Infakt constructor.
-     *
-     * @param string               $apiKey
-     * @param ClientInterface|null $client
      */
     public function __construct(string $apiKey, ClientInterface $client = null)
     {
@@ -47,8 +44,6 @@ class Infakt
      * @param $className
      *
      * @throws LogicException
-     *
-     * @return AbstractObjectRepository
      */
     public function getRepository(string $className): AbstractObjectRepository
     {
@@ -63,10 +58,6 @@ class Infakt
 
     /**
      * Send HTTP GET request.
-     *
-     * @param string $query
-     *
-     * @return \Psr\Http\Message\ResponseInterface
      */
     public function get(string $query): ResponseInterface
     {
@@ -75,10 +66,6 @@ class Infakt
 
     /**
      * Send HTTP DELETE request.
-     *
-     * @param string $query
-     *
-     * @return \Psr\Http\Message\ResponseInterface
      */
     public function delete(string $query): ResponseInterface
     {
@@ -87,11 +74,6 @@ class Infakt
 
     /**
      * Send HTTP POST request.
-     *
-     * @param string      $query
-     * @param null|string $body
-     *
-     * @return \Psr\Http\Message\ResponseInterface
      */
     public function post(string $query, ?string $body = null): ResponseInterface
     {
@@ -108,19 +90,12 @@ class Infakt
 
     /**
      * Attach endpoint URL to the query.
-     *
-     * @param string $query
-     *
-     * @return string
      */
     public function buildQuery(string $query): string
     {
         return self::API_ENDPOINT.'/'.self::API_VERSION.'/'.$query;
     }
 
-    /**
-     * @return array
-     */
     protected function getAuthorizationHeader(): array
     {
         return [

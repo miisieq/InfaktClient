@@ -12,8 +12,6 @@ interface ReverseMapperInterface
      * Map object to array.
      *
      * @param $entity EntityInterface
-     *
-     * @return array
      */
     public function reverseMap(EntityInterface $entity): array;
 }

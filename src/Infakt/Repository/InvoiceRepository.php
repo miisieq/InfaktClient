@@ -8,11 +8,16 @@ use Infakt\Model\Invoice;
 
 class InvoiceRepository extends AbstractObjectRepository
 {
-    public function getNextNumber($kind = 'vat')
+    /**
+     * Get a next invoice number.
+     *
+     * @param string $kind
+     */
+    public function getNextNumber($kind = 'vat'): string
     {
         $kinds = ['final', 'advance', 'margin', 'proforma', 'vat'];
 
-        if (!in_array($kind, $kinds)) {
+        if (!\in_array($kind, $kinds)) {
             throw new \LogicException('Invalid invoice kind "'.$kind.'"');
         }
 
@@ -24,7 +29,10 @@ class InvoiceRepository extends AbstractObjectRepository
         return (string) $data['next_number'];
     }
 
-    public function markAsPaid(Invoice $invoice, \DateTime $paidDate = null)
+    /**
+     * Mark an invoice as paid.
+     */
+    public function markAsPaid(Invoice $invoice, \DateTime $paidDate = null): void
     {
         $query = $this->getServiceName().'/'.$invoice->getId().'/paid.json';
         $this->infakt->post($query);

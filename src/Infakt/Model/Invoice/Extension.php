@@ -19,17 +19,12 @@ class Extension
      */
     protected $share;
 
-    /**
-     * @return Payment
-     */
     public function getPayment(): Payment
     {
         return $this->payment;
     }
 
     /**
-     * @param Payment $payment
-     *
      * @return Extension
      */
     public function setPayment(Payment $payment): self
@@ -39,17 +34,12 @@ class Extension
         return $this;
     }
 
-    /**
-     * @return Share
-     */
     public function getShare(): Share
     {
         return $this->share;
     }
 
     /**
-     * @param Share $share
-     *
      * @return Extension
      */
     public function setShare(Share $share): self

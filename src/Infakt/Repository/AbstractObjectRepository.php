@@ -11,6 +11,7 @@ use Infakt\Exception\ApiException;
 use Infakt\Infakt;
 use Infakt\Mapper\MapperInterface;
 use Infakt\Model\EntityInterface;
+use Psr\Http\Message\ResponseInterface;
 
 abstract class AbstractObjectRepository implements ObjectRepositoryInterface
 {
@@ -35,8 +36,6 @@ abstract class AbstractObjectRepository implements ObjectRepositoryInterface
 
     /**
      * AbstractObjectRepository constructor.
-     *
-     * @param Infakt $infakt
      */
     public function __construct(Infakt $infakt)
     {
@@ -50,10 +49,8 @@ abstract class AbstractObjectRepository implements ObjectRepositoryInterface
      * Get entity by ID.
      *
      * @param $entityId
-     *
-     * @return null|EntityInterface
      */
-    public function get(int $entityId)
+    public function get(int $entityId): ?EntityInterface
     {
         $response = $this->infakt->get($this->getServiceName().'/'.$entityId.'.json');
 
@@ -64,23 +61,12 @@ abstract class AbstractObjectRepository implements ObjectRepositoryInterface
         return $this->getMapper()->map(\GuzzleHttp\json_decode($response->getBody()->getContents(), true));
     }
 
-    /**
-     * @param int $page
-     * @param int $limit
-     *
-     * @return CollectionResult
-     */
-    public function getAll(int $page = 1, int $limit = 25)
+    public function getAll(int $page = 1, int $limit = 25): CollectionResult
     {
         return $this->match(new Criteria([], [], ($page - 1) * $limit, $limit));
     }
 
-    /**
-     * @param Criteria $criteria
-     *
-     * @return CollectionResult
-     */
-    public function matching(Criteria $criteria)
+    public function matching(Criteria $criteria): CollectionResult
     {
         return $this->match($criteria);
     }
@@ -92,17 +78,16 @@ abstract class AbstractObjectRepository implements ObjectRepositoryInterface
 
     /**
      * Delete an entity.
-     *
-     * @param EntityInterface $entity
-     *
-     * @return \Psr\Http\Message\ResponseInterface
      */
-    public function delete(EntityInterface $entity)
+    public function delete(EntityInterface $entity): ResponseInterface
     {
         return $this->infakt->delete($this->getServiceName().'/'.$entity->getId().'.json');
     }
 
-    public function buildQuery(Criteria $criteria)
+    /**
+     * Build a URL query.
+     */
+    public function buildQuery(Criteria $criteria): string
     {
         $query = $this->getServiceName().'.json';
         $parameters = $this->buildQueryParameters($criteria);
@@ -114,7 +99,10 @@ abstract class AbstractObjectRepository implements ObjectRepositoryInterface
         return $query;
     }
 
-    public function buildQueryParameters(Criteria $criteria)
+    /**
+     * Build a URL query string from criteria.
+     */
+    public function buildQueryParameters(Criteria $criteria): string
     {
         $query = '';
 
@@ -149,20 +137,16 @@ abstract class AbstractObjectRepository implements ObjectRepositoryInterface
     }
 
     /**
-     * @param Criteria $criteria
-     *
      * @throws ApiException
-     *
-     * @return CollectionResult
      */
-    protected function match(Criteria $criteria)
+    protected function match(Criteria $criteria): CollectionResult
     {
         $response = $this->infakt->get($this->buildQuery($criteria));
         $data = \GuzzleHttp\json_decode($response->getBody()->getContents(), true);
 
-        if (!(array_key_exists('metainfo', $data)
-            && array_key_exists('total_count', $data['metainfo'])
-            && array_key_exists('entities', $data))
+        if (!(\array_key_exists('metainfo', $data)
+            && \array_key_exists('total_count', $data['metainfo'])
+            && \array_key_exists('entities', $data))
         ) {
             throw new ApiException('Response does not contain required fields.');
         }
@@ -181,8 +165,6 @@ abstract class AbstractObjectRepository implements ObjectRepositoryInterface
 
     /**
      * Gets API service name, for example: "clients" or "bank_accounts".
-     *
-     * @return string
      */
     protected function getServiceName(): string
     {
@@ -191,8 +173,6 @@ abstract class AbstractObjectRepository implements ObjectRepositoryInterface
 
     /**
      * Gets entity name, for example: "client".
-     *
-     * @return string
      */
     protected function getEntityName(): string
     {
@@ -201,34 +181,28 @@ abstract class AbstractObjectRepository implements ObjectRepositoryInterface
 
     /**
      * Get fully-qualified class name of a model.
-     *
-     * @return string
      */
     protected function getModelClass(): string
     {
-        $class = substr(get_class($this), strrpos(get_class($this), '\\') + 1);
-        $class = substr($class, 0, strlen($class) - strlen('Repository'));
+        $class = substr(\get_class($this), strrpos(\get_class($this), '\\') + 1);
+        $class = substr($class, 0, \strlen($class) - \strlen('Repository'));
 
         return 'Infakt\\Model\\'.$class;
     }
 
     /**
      * Get fully-qualified class name of a mapper.
-     *
-     * @return string
      */
     protected function getMapperClass(): string
     {
-        $class = substr(get_class($this), strrpos(get_class($this), '\\') + 1);
-        $class = substr($class, 0, strlen($class) - strlen('Repository'));
+        $class = substr(\get_class($this), strrpos(\get_class($this), '\\') + 1);
+        $class = substr($class, 0, \strlen($class) - \strlen('Repository'));
 
         return 'Infakt\\Mapper\\'.$class.'Mapper';
     }
 
     /**
      * Get mapper.
-     *
-     * @return MapperInterface
      */
     protected function getMapper(): MapperInterface
     {

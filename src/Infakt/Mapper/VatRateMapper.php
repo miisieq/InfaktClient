@@ -4,6 +4,7 @@ declare(strict_types=1);
 
 namespace Infakt\Mapper;
 
+use Infakt\Model\EntityInterface;
 use Infakt\Model\VatRate;
 
 class VatRateMapper implements MapperInterface
@@ -15,7 +16,7 @@ class VatRateMapper implements MapperInterface
      *
      * @return VatRate
      */
-    public function map($data)
+    public function map($data): EntityInterface
     {
         return (new VatRate())
             ->setId((int) $data['id'])

@@ -16,9 +16,6 @@ abstract class AbstractExtension implements ExtensionInterface
      */
     protected $available;
 
-    /**
-     * @return string
-     */
     public function getLink(): string
     {
         return $this->link;
@@ -36,17 +33,12 @@ abstract class AbstractExtension implements ExtensionInterface
         return $this;
     }
 
-    /**
-     * @return bool
-     */
     public function isAvailable(): bool
     {
         return $this->available;
     }
 
     /**
-     * @param bool $available
-     *
      * @return $this
      */
     public function setAvailable(bool $available): self

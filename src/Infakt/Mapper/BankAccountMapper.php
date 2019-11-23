@@ -5,6 +5,7 @@ declare(strict_types=1);
 namespace Infakt\Mapper;
 
 use Infakt\Model\BankAccount;
+use Infakt\Model\EntityInterface;
 
 class BankAccountMapper implements MapperInterface
 {
@@ -15,7 +16,7 @@ class BankAccountMapper implements MapperInterface
      *
      * @return BankAccount
      */
-    public function map($data)
+    public function map($data): EntityInterface
     {
         return (new BankAccount())
             ->setId((int) $data['id'])

@@ -153,17 +153,12 @@ class Client implements EntityInterface
      */
     protected $paymentMethod;
 
-    /**
-     * @return int
-     */
     public function getId(): int
     {
         return $this->id;
     }
 
     /**
-     * @param int $id
-     *
      * @return Client
      */
     public function setId(int $id): self
@@ -173,17 +168,12 @@ class Client implements EntityInterface
         return $this;
     }
 
-    /**
-     * @return string
-     */
     public function getCompanyName(): string
     {
         return $this->companyName;
     }
 
     /**
-     * @param string $companyName
-     *
      * @return Client
      */
     public function setCompanyName(string $companyName): self
@@ -193,17 +183,12 @@ class Client implements EntityInterface
         return $this;
     }
 
-    /**
-     * @return string
-     */
     public function getStreet(): string
     {
         return $this->street;
     }
 
     /**
-     * @param string $street
-     *
      * @return Client
      */
     public function setStreet(string $street): self
@@ -213,17 +198,12 @@ class Client implements EntityInterface
         return $this;
     }
 
-    /**
-     * @return string
-     */
     public function getCity(): string
     {
         return $this->city;
     }
 
     /**
-     * @param string $city
-     *
      * @return Client
      */
     public function setCity(string $city): self
@@ -233,17 +213,12 @@ class Client implements EntityInterface
         return $this;
     }
 
-    /**
-     * @return string
-     */
     public function getCountry(): string
     {
         return $this->country;
     }
 
     /**
-     * @param string $country
-     *
      * @return Client
      */
     public function setCountry(string $country): self
@@ -253,17 +228,12 @@ class Client implements EntityInterface
         return $this;
     }
 
-    /**
-     * @return string
-     */
     public function getPostalCode(): string
     {
         return $this->postalCode;
     }
 
     /**
-     * @param string $postalCode
-     *
      * @return Client
      */
     public function setPostalCode(string $postalCode): self
@@ -273,17 +243,12 @@ class Client implements EntityInterface
         return $this;
     }
 
-    /**
-     * @return string
-     */
     public function getNip(): string
     {
         return $this->nip;
     }
 
     /**
-     * @param string $nip
-     *
      * @return Client
      */
     public function setNip(string $nip): self
@@ -293,17 +258,12 @@ class Client implements EntityInterface
         return $this;
     }
 
-    /**
-     * @return string
-     */
     public function getPhoneNumber(): string
     {
         return $this->phoneNumber;
     }
 
     /**
-     * @param string $phoneNumber
-     *
      * @return Client
      */
     public function setPhoneNumber(string $phoneNumber): self
@@ -313,17 +273,12 @@ class Client implements EntityInterface
         return $this;
     }
 
-    /**
-     * @return bool
-     */
     public function isSameForwardAddress(): bool
     {
         return $this->sameForwardAddress;
     }
 
     /**
-     * @param bool $sameForwardAddress
-     *
      * @return Client
      */
     public function setSameForwardAddress(bool $sameForwardAddress): self
@@ -333,17 +288,12 @@ class Client implements EntityInterface
         return $this;
     }
 
-    /**
-     * @return string
-     */
     public function getWebsite(): string
     {
         return $this->website;
     }
 
     /**
-     * @param string $website
-     *
      * @return Client
      */
     public function setWebsite(string $website): self
@@ -353,17 +303,12 @@ class Client implements EntityInterface
         return $this;
     }
 
-    /**
-     * @return string
-     */
     public function getEmail(): string
     {
         return $this->email;
     }
 
     /**
-     * @param string $email
-     *
      * @return Client
      */
     public function setEmail(string $email): self
@@ -373,17 +318,12 @@ class Client implements EntityInterface
         return $this;
     }
 
-    /**
-     * @return string
-     */
     public function getNote(): string
     {
         return $this->note;
     }
 
     /**
-     * @param string $note
-     *
      * @return Client
      */
     public function setNote(string $note): self
@@ -393,17 +333,12 @@ class Client implements EntityInterface
         return $this;
     }
 
-    /**
-     * @return string
-     */
     public function getReceiver(): string
     {
         return $this->receiver;
     }
 
     /**
-     * @param string $receiver
-     *
      * @return Client
      */
     public function setReceiver(string $receiver): self
@@ -413,17 +348,12 @@ class Client implements EntityInterface
         return $this;
     }
 
-    /**
-     * @return string
-     */
     public function getMailingCompanyName(): string
     {
         return $this->mailingCompanyName;
     }
 
     /**
-     * @param string $mailingCompanyName
-     *
      * @return Client
      */
     public function setMailingCompanyName(string $mailingCompanyName): self
@@ -433,17 +363,12 @@ class Client implements EntityInterface
         return $this;
     }
 
-    /**
-     * @return string
-     */
     public function getMailingStreet(): string
     {
         return $this->mailingStreet;
     }
 
     /**
-     * @param string $mailingStreet
-     *
      * @return Client
      */
     public function setMailingStreet(string $mailingStreet): self
@@ -453,17 +378,12 @@ class Client implements EntityInterface
         return $this;
     }
 
-    /**
-     * @return string
-     */
     public function getMailingCity(): string
     {
         return $this->mailingCity;
     }
 
     /**
-     * @param string $mailingCity
-     *
      * @return Client
      */
     public function setMailingCity(string $mailingCity): self
@@ -473,17 +393,12 @@ class Client implements EntityInterface
         return $this;
     }
 
-    /**
-     * @return string
-     */
     public function getMailingPostalCode(): string
     {
         return $this->mailingPostalCode;
     }
 
     /**
-     * @param string $mailingPostalCode
-     *
      * @return Client
      */
     public function setMailingPostalCode(string $mailingPostalCode): self
@@ -493,17 +408,12 @@ class Client implements EntityInterface
         return $this;
     }
 
-    /**
-     * @return int
-     */
     public function getDaysToPayment(): int
     {
         return $this->daysToPayment;
     }
 
     /**
-     * @param int|null $daysToPayment
-     *
      * @return Client
      */
     public function setDaysToPayment(?int $daysToPayment): self
@@ -513,17 +423,12 @@ class Client implements EntityInterface
         return $this;
     }
 
-    /**
-     * @return string
-     */
     public function getInvoiceNote(): string
     {
         return $this->invoiceNote;
     }
 
     /**
-     * @param string $invoiceNote
-     *
      * @return Client
      */
     public function setInvoiceNote(string $invoiceNote): self
@@ -533,17 +438,12 @@ class Client implements EntityInterface
         return $this;
     }
 
-    /**
-     * @return string
-     */
     public function getPaymentMethod(): string
     {
         return $this->paymentMethod;
     }
 
     /**
-     * @param string $paymentMethod
-     *
      * @return Client
      */
     public function setPaymentMethod(string $paymentMethod): self
