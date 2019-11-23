@@ -21,7 +21,7 @@ class VatRateMapperTest extends TestCase
      * @param array   $data
      * @param VatRate $expected
      */
-    public function testMap(array $data, VatRate $expected)
+    public function testMap(array $data, VatRate $expected): void
     {
         $vatRate = $this->mapper->map($data);
 
@@ -31,7 +31,7 @@ class VatRateMapperTest extends TestCase
         $this->assertSame($expected->getSymbol(), $vatRate->getSymbol());
     }
 
-    public function dataProvider()
+    public function dataProvider(): array
     {
         return [
             [
@@ -63,12 +63,12 @@ class VatRateMapperTest extends TestCase
         ];
     }
 
-    protected function setUp()
+    protected function setUp(): void
     {
         $this->mapper = new VatRateMapper();
     }
 
-    protected function tearDown()
+    protected function tearDown(): void
     {
         $this->mapper = null;
     }

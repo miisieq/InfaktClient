@@ -18,24 +18,24 @@ class BankAccountRepositoryTest extends TestCase
      */
     protected $repository;
 
-    protected function setUp()
+    protected function setUp(): void
     {
         $this->repository = (new Infakt('XXX', new TestClient()))->getRepository('\\Infakt\\Model\\BankAccount');
     }
 
-    protected function tearDown()
+    protected function tearDown(): void
     {
         $this->repository = null;
     }
 
-    public function testGet()
+    public function testGet(): void
     {
         $this->expectException(LogicException::class);
 
         $this->repository->get(1);
     }
 
-    public function testCreate()
+    public function testCreate(): void
     {
         $this->expectException(LogicException::class);
 

@@ -74,12 +74,12 @@ class ReverseMapperTraitTest extends TestCase
         $this->assertSame($expected, $this->trait->reverseMapDate($data));
     }
 
-    protected function setUp()
+    protected function setUp(): void
     {
         $this->trait = $this->getMockForTrait('\Infakt\Mapper\ReverseMapperTrait');
     }
 
-    protected function tearDown()
+    protected function tearDown(): void
     {
         $this->trait = null;
     }

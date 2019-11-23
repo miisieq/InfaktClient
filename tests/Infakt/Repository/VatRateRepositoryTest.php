@@ -19,31 +19,31 @@ class VatRateRepositoryTest extends TestCase
      */
     protected $repository;
 
-    protected function setUp()
+    protected function setUp(): void
     {
         $this->repository = (new Infakt('XXX', new TestClient()))->getRepository('\\Infakt\\Model\\VatRate');
     }
 
-    protected function tearDown()
+    protected function tearDown(): void
     {
         $this->repository = null;
     }
 
-    public function testGet()
+    public function testGet(): void
     {
         $this->expectException(LogicException::class);
 
         $this->repository->get(1);
     }
 
-    public function testCreate()
+    public function testCreate(): void
     {
         $this->expectException(LogicException::class);
 
         $this->repository->create(new VatRate());
     }
 
-    public function testMatching()
+    public function testMatching(): void
     {
         $this->expectException(LogicException::class);
 

@@ -19,32 +19,32 @@ class InvoiceRepositoryTest extends TestCase
      */
     protected $repository;
 
-    protected function setUp()
+    protected function setUp(): void
     {
         $this->repository = (new Infakt('XXX', new TestClient()))->getRepository('\\Infakt\\Model\\Invoice');
     }
 
-    protected function tearDown()
+    protected function tearDown(): void
     {
         $this->repository = null;
     }
 
-    public function testGetModelClass()
+    public function testGetModelClass(): void
     {
         $this->assertSame('Infakt\Model\Invoice', $this->getPrivateMethod('getModelClass')->invoke($this->repository));
     }
 
-    public function testGetEntityName()
+    public function testGetEntityName(): void
     {
         $this->assertSame('invoice', $this->getPrivateMethod('getEntityName')->invoke($this->repository));
     }
 
-    public function testGetServiceName()
+    public function testGetServiceName(): void
     {
         $this->assertSame('invoices', $this->getPrivateMethod('getServiceName')->invoke($this->repository));
     }
 
-    public function testGetMapper()
+    public function testGetMapper(): void
     {
         $this->assertInstanceOf(
             '\\Infakt\\Mapper\\InvoiceMapper',
@@ -58,7 +58,7 @@ class InvoiceRepositoryTest extends TestCase
      * @param Criteria $criteria
      * @param string   $expected
      */
-    public function testBuildQueryParameters(Criteria $criteria, string $expected)
+    public function testBuildQueryParameters(Criteria $criteria, string $expected): void
     {
         $this->assertSame(
             $expected,
@@ -66,7 +66,7 @@ class InvoiceRepositoryTest extends TestCase
         );
     }
 
-    public function testBuildQuery()
+    public function testBuildQuery(): void
     {
         $this->assertSame(
             'invoices.json?offset=0&limit=25',
@@ -74,7 +74,7 @@ class InvoiceRepositoryTest extends TestCase
         );
     }
 
-    public function criteriaProvider()
+    public function criteriaProvider(): array
     {
         return [
             [
@@ -122,11 +122,11 @@ class InvoiceRepositoryTest extends TestCase
     }
 
     /**
-     * @param $name
+     * @param string $name
      *
      * @return \ReflectionMethod
      */
-    protected function getPrivateMethod($name)
+    protected function getPrivateMethod(string $name): \ReflectionMethod
     {
         $class = new \ReflectionClass($this->repository);
         $method = $class->getMethod($name);

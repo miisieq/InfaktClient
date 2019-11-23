@@ -21,7 +21,7 @@ class ClientMapperTest extends TestCase
      * @param array  $data
      * @param Client $expected
      */
-    public function testMap(array $data, Client $expected)
+    public function testMap(array $data, Client $expected): void
     {
         $client = $this->mapper->map($data);
 
@@ -47,7 +47,7 @@ class ClientMapperTest extends TestCase
         $this->assertSame($expected->getPaymentMethod(), $client->getPaymentMethod());
     }
 
-    public function dataProvider()
+    public function dataProvider(): array
     {
         return [
             [
@@ -98,12 +98,12 @@ class ClientMapperTest extends TestCase
         ];
     }
 
-    protected function setUp()
+    protected function setUp(): void
     {
         $this->mapper = new ClientMapper();
     }
 
-    protected function tearDown()
+    protected function tearDown(): void
     {
         $this->mapper = null;
     }
