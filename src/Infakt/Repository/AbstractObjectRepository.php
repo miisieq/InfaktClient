@@ -36,6 +36,8 @@ abstract class AbstractObjectRepository implements ObjectRepositoryInterface
 
     /**
      * AbstractObjectRepository constructor.
+     *
+     * @param Infakt $infakt
      */
     public function __construct(Infakt $infakt)
     {
@@ -49,12 +51,14 @@ abstract class AbstractObjectRepository implements ObjectRepositoryInterface
      * Get entity by ID.
      *
      * @param $entityId
+     *
+     * @return EntityInterface|null
      */
     public function get(int $entityId): ?EntityInterface
     {
         $response = $this->infakt->get($this->getServiceName().'/'.$entityId.'.json');
 
-        if (2 != substr((string) $response->getStatusCode(), 0, 1)) {
+        if (2 != \substr((string) $response->getStatusCode(), 0, 1)) {
             return null;
         }
 
@@ -78,6 +82,10 @@ abstract class AbstractObjectRepository implements ObjectRepositoryInterface
 
     /**
      * Delete an entity.
+     *
+     * @param EntityInterface $entity
+     *
+     * @return \Psr\Http\Message\ResponseInterface
      */
     public function delete(EntityInterface $entity): ResponseInterface
     {
@@ -137,7 +145,11 @@ abstract class AbstractObjectRepository implements ObjectRepositoryInterface
     }
 
     /**
+     * @param Criteria $criteria
+     *
      * @throws ApiException
+     *
+     * @return CollectionResult
      */
     protected function match(Criteria $criteria): CollectionResult
     {
@@ -165,44 +177,54 @@ abstract class AbstractObjectRepository implements ObjectRepositoryInterface
 
     /**
      * Gets API service name, for example: "clients" or "bank_accounts".
+     *
+     * @return string
      */
     protected function getServiceName(): string
     {
-        return Inflector::pluralize(Inflector::tableize(substr($this->modelClass, strrpos($this->modelClass, '\\') + 1)));
+        return Inflector::pluralize(Inflector::tableize(\substr($this->modelClass, \strrpos($this->modelClass, '\\') + 1)));
     }
 
     /**
      * Gets entity name, for example: "client".
+     *
+     * @return string
      */
     protected function getEntityName(): string
     {
-        return strtolower(substr($this->modelClass, strrpos($this->modelClass, '\\') + 1));
+        return \strtolower(\substr($this->modelClass, \strrpos($this->modelClass, '\\') + 1));
     }
 
     /**
      * Get fully-qualified class name of a model.
+     *
+     * @return string
      */
     protected function getModelClass(): string
     {
-        $class = substr(\get_class($this), strrpos(\get_class($this), '\\') + 1);
-        $class = substr($class, 0, \strlen($class) - \strlen('Repository'));
+        $class = \substr(\get_class($this), \strrpos(\get_class($this), '\\') + 1);
+        $class = \substr($class, 0, \strlen($class) - \strlen('Repository'));
 
         return 'Infakt\\Model\\'.$class;
     }
 
     /**
      * Get fully-qualified class name of a mapper.
+     *
+     * @return string
      */
     protected function getMapperClass(): string
     {
-        $class = substr(\get_class($this), strrpos(\get_class($this), '\\') + 1);
-        $class = substr($class, 0, \strlen($class) - \strlen('Repository'));
+        $class = \substr(\get_class($this), \strrpos(\get_class($this), '\\') + 1);
+        $class = \substr($class, 0, \strlen($class) - \strlen('Repository'));
 
         return 'Infakt\\Mapper\\'.$class.'Mapper';
     }
 
     /**
      * Get mapper.
+     *
+     * @return MapperInterface
      */
     protected function getMapper(): MapperInterface
     {
