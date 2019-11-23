@@ -11,6 +11,7 @@ use Infakt\Exception\ApiException;
 use Infakt\Infakt;
 use Infakt\Mapper\MapperInterface;
 use Infakt\Model\EntityInterface;
+use Psr\Http\Message\ResponseInterface;
 
 abstract class AbstractObjectRepository implements ObjectRepositoryInterface
 {
@@ -53,7 +54,7 @@ abstract class AbstractObjectRepository implements ObjectRepositoryInterface
      *
      * @return null|EntityInterface
      */
-    public function get(int $entityId)
+    public function get(int $entityId): ?EntityInterface
     {
         $response = $this->infakt->get($this->getServiceName().'/'.$entityId.'.json');
 
@@ -70,7 +71,7 @@ abstract class AbstractObjectRepository implements ObjectRepositoryInterface
      *
      * @return CollectionResult
      */
-    public function getAll(int $page = 1, int $limit = 25)
+    public function getAll(int $page = 1, int $limit = 25): CollectionResult
     {
         return $this->match(new Criteria([], [], ($page - 1) * $limit, $limit));
     }
@@ -80,7 +81,7 @@ abstract class AbstractObjectRepository implements ObjectRepositoryInterface
      *
      * @return CollectionResult
      */
-    public function matching(Criteria $criteria)
+    public function matching(Criteria $criteria): CollectionResult
     {
         return $this->match($criteria);
     }
@@ -97,12 +98,18 @@ abstract class AbstractObjectRepository implements ObjectRepositoryInterface
      *
      * @return \Psr\Http\Message\ResponseInterface
      */
-    public function delete(EntityInterface $entity)
+    public function delete(EntityInterface $entity): ResponseInterface
     {
         return $this->infakt->delete($this->getServiceName().'/'.$entity->getId().'.json');
     }
 
-    public function buildQuery(Criteria $criteria)
+    /**
+     * Build a URL query.
+     *
+     * @param Criteria $criteria
+     * @return string
+     */
+    public function buildQuery(Criteria $criteria): string
     {
         $query = $this->getServiceName().'.json';
         $parameters = $this->buildQueryParameters($criteria);
@@ -114,7 +121,13 @@ abstract class AbstractObjectRepository implements ObjectRepositoryInterface
         return $query;
     }
 
-    public function buildQueryParameters(Criteria $criteria)
+    /**
+     * Build a URL query string from criteria.
+     *
+     * @param Criteria $criteria
+     * @return string
+     */
+    public function buildQueryParameters(Criteria $criteria): string
     {
         $query = '';
 
@@ -155,7 +168,7 @@ abstract class AbstractObjectRepository implements ObjectRepositoryInterface
      *
      * @return CollectionResult
      */
-    protected function match(Criteria $criteria)
+    protected function match(Criteria $criteria): CollectionResult
     {
         $response = $this->infakt->get($this->buildQuery($criteria));
         $data = \GuzzleHttp\json_decode($response->getBody()->getContents(), true);

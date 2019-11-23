@@ -15,5 +15,5 @@ interface MapperInterface
      *
      * @return EntityInterface
      */
-    public function map($data);
+    public function map($data): EntityInterface;
 }
