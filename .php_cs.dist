@@ -2,7 +2,7 @@
 
 declare(strict_types=1);
 
-if (!file_exists(__DIR__.'/src')) {
+if (!\file_exists(__DIR__.'/src')) {
     exit(0);
 }
 
@@ -14,6 +14,8 @@ return PhpCsFixer\Config::create()
         'array_syntax' => ['syntax' => 'short'],
         'protected_to_private' => false,
         'declare_strict_types' => true,
+        'no_superfluous_phpdoc_tags' => false,
+        'native_function_invocation' => true,
     ])
     ->setRiskyAllowed(true)
     ->setFinder(

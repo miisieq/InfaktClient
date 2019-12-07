@@ -31,6 +31,9 @@ class Infakt
 
     /**
      * Infakt constructor.
+     *
+     * @param string               $apiKey
+     * @param ClientInterface|null $client
      */
     public function __construct(string $apiKey, ClientInterface $client = null)
     {
@@ -44,12 +47,14 @@ class Infakt
      * @param $className
      *
      * @throws LogicException
+     *
+     * @return AbstractObjectRepository
      */
     public function getRepository(string $className): AbstractObjectRepository
     {
-        $className = 'Infakt\\Repository\\'.substr($className, strrpos($className, '\\') + 1).'Repository';
+        $className = 'Infakt\\Repository\\'.\substr($className, \strrpos($className, '\\') + 1).'Repository';
 
-        if (!class_exists($className)) {
+        if (!\class_exists($className)) {
             throw new LogicException("There is no repository to work with class $className.");
         }
 
@@ -58,48 +63,74 @@ class Infakt
 
     /**
      * Send HTTP GET request.
+     *
+     * @param string $query
+     *
+     * @return ResponseInterface
      */
     public function get(string $query): ResponseInterface
     {
-        return $this->client->request('get', $this->buildQuery($query), ['headers' => $this->getAuthorizationHeader()]);
+        return $this->request('get', $query);
     }
 
     /**
      * Send HTTP DELETE request.
+     *
+     * @param string $query
+     *
+     * @return ResponseInterface
      */
     public function delete(string $query): ResponseInterface
     {
-        return $this->client->request('delete', $this->buildQuery($query), ['headers' => $this->getAuthorizationHeader()]);
+        return $this->request('delete', $query);
     }
 
     /**
      * Send HTTP POST request.
+     *
+     * @param string      $query
+     * @param string|null $body
+     *
+     * @return ResponseInterface
      */
     public function post(string $query, ?string $body = null): ResponseInterface
     {
-        $options = [
-            'headers' => $this->getAuthorizationHeader(),
-        ];
-
-        if ($body) {
-            $options['body'] = $body;
-        }
-
-        return $this->client->request('post', $this->buildQuery($query), $options);
+        return $this->request('post', $query, $body);
     }
 
     /**
      * Attach endpoint URL to the query.
+     *
+     * @param string $query
+     *
+     * @return string
      */
     public function buildQuery(string $query): string
     {
         return self::API_ENDPOINT.'/'.self::API_VERSION.'/'.$query;
     }
 
-    protected function getAuthorizationHeader(): array
+    /**
+     * Prepare and perform HTTP request through the client.
+     *
+     * @param string      $method
+     * @param string      $query
+     * @param string|null $body
+     *
+     * @return ResponseInterface
+     */
+    public function request(string $method, string $query, ?string $body = null): ResponseInterface
     {
-        return [
-            'X-inFakt-ApiKey' => $this->apiKey,
+        $options = [
+            'headers' => [
+                'X-inFakt-ApiKey' => $this->apiKey,
+            ],
         ];
+
+        if ($body) {
+            $options['body'] = $body;
+        }
+
+        return $this->client->request($method, $this->buildQuery($query), $options);
     }
 }
