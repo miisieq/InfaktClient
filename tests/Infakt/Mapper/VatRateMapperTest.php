@@ -17,9 +17,6 @@ class VatRateMapperTest extends TestCase
 
     /**
      * @dataProvider dataProvider
-     *
-     * @param array   $data
-     * @param VatRate $expected
      */
     public function testMap(array $data, VatRate $expected): void
     {

@@ -17,9 +17,6 @@ class InvoiceMapperTest extends TestCase
 
     /**
      * @dataProvider dataProvider
-     *
-     * @param array   $data
-     * @param Invoice $expected
      */
     public function testMap(array $data, Invoice $expected): void
     {
@@ -105,9 +102,6 @@ class InvoiceMapperTest extends TestCase
 
     /**
      * @dataProvider dataProvider
-     *
-     * @param array   $expected
-     * @param Invoice $invoice
      */
     public function testReverseMap(array $expected, Invoice $invoice): void
     {

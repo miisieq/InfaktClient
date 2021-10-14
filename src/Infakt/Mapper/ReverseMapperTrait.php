@@ -8,10 +8,6 @@ trait ReverseMapperTrait
 {
     /**
      * Maps price to string.
-     *
-     * @param float|null $price
-     *
-     * @return int|null
      */
     public function reverseMapPrice(?float $price): ?int
     {
@@ -29,8 +25,6 @@ trait ReverseMapperTrait
     /**
      * Maps quantity to integer or float.
      *
-     * @param float|null $quantity
-     *
      * @return int|float|null
      */
     public function reverseMapQuantity(?float $quantity)
@@ -40,10 +34,6 @@ trait ReverseMapperTrait
 
     /**
      * Maps \DateTime object to string.
-     *
-     * @param \DateTime|null $date
-     *
-     * @return string|null
      */
     public function reverseMapDate(?\DateTime $date): ?string
     {

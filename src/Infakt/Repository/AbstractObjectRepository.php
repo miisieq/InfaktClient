@@ -36,8 +36,6 @@ abstract class AbstractObjectRepository implements ObjectRepositoryInterface
 
     /**
      * AbstractObjectRepository constructor.
-     *
-     * @param Infakt $infakt
      */
     public function __construct(Infakt $infakt)
     {
@@ -51,8 +49,6 @@ abstract class AbstractObjectRepository implements ObjectRepositoryInterface
      * Get entity by ID.
      *
      * @param $entityId
-     *
-     * @return EntityInterface|null
      */
     public function get(int $entityId): ?EntityInterface
     {
@@ -82,10 +78,6 @@ abstract class AbstractObjectRepository implements ObjectRepositoryInterface
 
     /**
      * Delete an entity.
-     *
-     * @param EntityInterface $entity
-     *
-     * @return \Psr\Http\Message\ResponseInterface
      */
     public function delete(EntityInterface $entity): ResponseInterface
     {
@@ -145,11 +137,7 @@ abstract class AbstractObjectRepository implements ObjectRepositoryInterface
     }
 
     /**
-     * @param Criteria $criteria
-     *
      * @throws ApiException
-     *
-     * @return CollectionResult
      */
     protected function match(Criteria $criteria): CollectionResult
     {
@@ -177,8 +165,6 @@ abstract class AbstractObjectRepository implements ObjectRepositoryInterface
 
     /**
      * Gets API service name, for example: "clients" or "bank_accounts".
-     *
-     * @return string
      */
     protected function getServiceName(): string
     {
@@ -187,8 +173,6 @@ abstract class AbstractObjectRepository implements ObjectRepositoryInterface
 
     /**
      * Gets entity name, for example: "client".
-     *
-     * @return string
      */
     protected function getEntityName(): string
     {
@@ -197,8 +181,6 @@ abstract class AbstractObjectRepository implements ObjectRepositoryInterface
 
     /**
      * Get fully-qualified class name of a model.
-     *
-     * @return string
      */
     protected function getModelClass(): string
     {
@@ -210,8 +192,6 @@ abstract class AbstractObjectRepository implements ObjectRepositoryInterface
 
     /**
      * Get fully-qualified class name of a mapper.
-     *
-     * @return string
      */
     protected function getMapperClass(): string
     {
@@ -223,8 +203,6 @@ abstract class AbstractObjectRepository implements ObjectRepositoryInterface
 
     /**
      * Get mapper.
-     *
-     * @return MapperInterface
      */
     protected function getMapper(): MapperInterface
     {
