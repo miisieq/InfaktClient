@@ -17,9 +17,6 @@ class BankAccountMapperTest extends TestCase
 
     /**
      * @dataProvider dataProvider
-     *
-     * @param array       $data
-     * @param BankAccount $expected
      */
     public function testMap(array $data, BankAccount $expected)
     {
