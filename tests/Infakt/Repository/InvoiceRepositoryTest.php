@@ -54,9 +54,6 @@ class InvoiceRepositoryTest extends TestCase
 
     /**
      * @dataProvider criteriaProvider
-     *
-     * @param Criteria $criteria
-     * @param string   $expected
      */
     public function testBuildQueryParameters(Criteria $criteria, string $expected): void
     {
@@ -121,11 +118,6 @@ class InvoiceRepositoryTest extends TestCase
         ];
     }
 
-    /**
-     * @param string $name
-     *
-     * @return \ReflectionMethod
-     */
     protected function getPrivateMethod(string $name): \ReflectionMethod
     {
         $class = new \ReflectionClass($this->repository);

@@ -17,9 +17,6 @@ class ClientMapperTest extends TestCase
 
     /**
      * @dataProvider dataProvider
-     *
-     * @param array  $data
-     * @param Client $expected
      */
     public function testMap(array $data, Client $expected): void
     {
