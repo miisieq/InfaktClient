@@ -1,15 +1,20 @@
-name: PHP Composer
+name: PHP
 
 on: [push]
 
 jobs:
   validate:
+    name: Validate composer.json
     runs-on: ubuntu-latest
     steps:
-      - name: Validate composer.json and composer.lock
+      - name: Checkout repository
+        uses: actions/checkout@v2
+
+      - name: Validate composer.json
         run: composer validate
 
   test:
+    name: Run test suite
     runs-on: ${{ matrix.operating-system }}
     strategy:
       matrix:
@@ -25,7 +30,7 @@ jobs:
         php-version: ${{ matrix.php-versions }}
 
     - name: Install dependencies
-      run: composer install --prefer-dist --no-progress --no-suggest
+      run: composer install --prefer-dist --no-progress
 
     - name: Run test suite
       run: composer run-script tests
