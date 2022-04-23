@@ -14,7 +14,7 @@ jobs:
         run: composer validate
 
   test:
-    name: Run test suite (${{ matrix.php-versions }})
+    name: Run test suite (PHP ${{ matrix.php-versions }})
     runs-on: ${{ matrix.operating-system }}
     strategy:
       matrix:
