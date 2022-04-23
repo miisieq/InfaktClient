@@ -1,23 +1,36 @@
-name: PHP Composer
+name: PHP
 
 on: [push]
 
 jobs:
-  build:
-
+  validate:
+    name: Validate composer.json
     runs-on: ubuntu-latest
-
     steps:
-    - uses: actions/checkout@v1
+      - name: Checkout repository
+        uses: actions/checkout@v2
 
-    - name: Validate composer.json and composer.lock
-      run: composer validate
+      - name: Validate composer.json
+        run: composer validate
+
+  test:
+    name: Run test suite (PHP ${{ matrix.php-versions }})
+    runs-on: ${{ matrix.operating-system }}
+    strategy:
+      matrix:
+        operating-system: [ ubuntu-latest ]
+        php-versions: [ '7.2', '7.3', '7.4', '8.0', '8.1' ]
+    steps:
+    - name: Checkout repository
+      uses: actions/checkout@v2
+
+    - name: Setup PHP
+      uses: shivammathur/setup-php@v2
+      with:
+        php-version: ${{ matrix.php-versions }}
 
     - name: Install dependencies
-      run: composer install --prefer-dist --no-progress --no-suggest
-
-    # Add a test script to composer.json, for instance: "test": "vendor/bin/phpunit"
-    # Docs: https://getcomposer.org/doc/articles/scripts.md
+      run: composer install --prefer-dist --no-progress
 
     - name: Run test suite
       run: composer run-script tests
