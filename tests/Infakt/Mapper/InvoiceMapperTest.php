@@ -155,7 +155,7 @@ class InvoiceMapperTest extends TestCase
             ],
             [
                 null,
-                null
+                null,
             ],
         ];
     }
