@@ -40,7 +40,7 @@ class Invoice implements EntityInterface
     protected $paidDate;
 
     /**
-     * @var string
+     * @var ?string
      */
     protected $notes;
 
@@ -257,7 +257,7 @@ class Invoice implements EntityInterface
     /**
      * @return Invoice
      */
-    public function setNotes(string $notes): self
+    public function setNotes(?string $notes): self
     {
         $this->notes = $notes;
 
