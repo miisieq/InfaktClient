@@ -45,7 +45,7 @@ class InvoiceMapper implements MapperInterface, ReverseMapperInterface
             ->setInvoiceDate($this->mapDate($data['invoice_date']))
             ->setCurrency($data['currency'])
             ->setPaidPrice($this->mapPrice($data['paid_price']))
-            ->setNotes($data['notes'])
+            ->setNotes($this->mapNote($data['notes']))
             ->setKind($data['kind'])
             ->setPaymentMethod($data['payment_method'])
             ->setSellerSignature($data['seller_signature'])
@@ -140,5 +140,14 @@ class InvoiceMapper implements MapperInterface, ReverseMapperInterface
             'invoice_date_kind' => $entity->getInvoiceDateKind(),
             'services' => $services,
         ];
+    }
+
+    public function mapNote(?string $note): ?string
+    {
+        if ('' === $note) {
+            return null;
+        }
+
+        return $note;
     }
 }
